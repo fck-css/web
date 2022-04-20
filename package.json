@@ -7,8 +7,11 @@
     "cra-template": "1.1.3",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
+    "react-hook-form": "^7.30.0",
+    "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.0",
-    "sass": "^1.50.1"
+    "sass": "^1.50.1",
+    "yup": "^0.32.11"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -1,16 +1,26 @@
 import react from "react";
-import './Navbar.css';
+import { Link } from "react-router-dom";
+import './Navbar.scss';
 
 const Navbar = () => {
     return (
         <>
-            <nav className="navbar navbar-light bg-light">
+            <nav className="container navbar">
               <div className="container-fluid">
                 <a className="navbar-brand" href="/">F*ck CSS</a>
-                <form className="d-flex">
-                  <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-                  <button className="btn btn-outline-success" type="submit">Search</button>
-                </form>
+                <div className="tools-profile-div">
+                  <a className="nav-link" href="/" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Tools
+                  </a>
+                  <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a className="dropdown-item" href="/">Action</a>
+                    <a className="dropdown-item" href="/">Another action</a>
+                    <div className="dropdown-divider"></div>
+                    <a className="dropdown-item" href="/">Something else here</a>
+                  </div>
+                  <Link className="navbar-brand" to="/register">Register</Link>
+                  <a className="navbar-brand" href="/">Profile</a>
+                </div>
               </div>
             </nav>
         </>
