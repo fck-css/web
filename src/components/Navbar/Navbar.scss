@@ -1,0 +1,16 @@
+@import '../../variables';
+
+.navbar {
+    background-color: transparent;
+}
+
+.navbar a {
+    color: $brown-color;
+    font-size: 1.25rem;
+}
+
+.tools-profile-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
