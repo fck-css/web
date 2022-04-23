@@ -19,6 +19,7 @@ const Navbar = () => {
                     <a className="dropdown-item" href="/">Something else here</a>
                   </div>
                   <Link className="navbar-brand" to="/register">Register</Link>
+                  <Link className="navbar-brand" to="/login">Log in</Link>
                   <a className="navbar-brand" href="/">Profile</a>
                 </div>
               </div>
