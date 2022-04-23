@@ -1,5 +1,5 @@
-import react, { useState } from "react";
-import { appendErrors, useForm } from "react-hook-form";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -15,49 +15,53 @@ const schema = yup.object({
 
 const Register = () => {
     const [isSubmiting, setIsSubmiting] = useState(false);
-    const [backErrors, setBackErrors] = useState({});
     const navigate = useNavigate();
 
-    const { register, handleSubmit, formState: { errors } } = useForm({
+    const { register, handleSubmit, setError, formState: { errors } } = useForm({
         resolver: yupResolver(schema)
     });
     
     const onSubmit = data => {
-        setBackErrors({});
+        console.log('entra');
         setIsSubmiting(true);
 
         registerRequest(data)
             .then(user => navigate('/login'))
-            .catch(err => setBackErrors(err?.response?.data?.errors))
+            .catch(err => {
+                console.log(err.response)
+                if(err.response.status === 409){
+                    setError('email', {message: 'Email already exists'})
+                }
+            })
             .finally(() => setIsSubmiting(false));
     }
 
     return (
         <div className="register-form">
-            <h3 className="mb-3">Register</h3>
+            <h3 className="mb-3">Sign Up</h3>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <InputGroup
                     placeholder="Name"
                     type="text"
                     id="name"
                     register={ register }
-                    error={backErrors?.name || errors.name?.message}
+                    error={errors.name?.message}
                 />
                 <InputGroup
                     placeholder="Email"
                     type="email"
                     id="email"
                     register={ register }
-                    error={backErrors?.email || errors.email?.message}
+                    error={errors.email?.message}
                 />
                 <InputGroup
                     placeholder="Password"
                     type="password"
                     id="password"
                     register={ register }
-                    error={backErrors?.password || errors.password?.message}
+                    error={errors.password?.message}
                 />
-                <button className={`btn btn-${isSubmiting ? 'secondary' : 'dark'}`}>{isSubmiting ? 'Registering...' : 'Submit'}</button>
+                <button className={`mt-3 btn btn-${isSubmiting ? 'secondary' : 'dark'}`}>{isSubmiting ? 'Registering...' : 'Submit'}</button>
             </form>
         </div>
     )
