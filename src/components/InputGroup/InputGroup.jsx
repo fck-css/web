@@ -10,7 +10,7 @@ const InputGroup = ({ id, type, placeholder, register }) => {
                 id={id}
                 placeholder={placeholder}
                 {...register(id)}
-                />
+            />
         </div>
     )
 };
