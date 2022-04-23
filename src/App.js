@@ -5,6 +5,7 @@ import Footer from './components/Footer/Footer';
 import { Route, Routes } from 'react-router-dom';
 import Register from './views/Register/Register';
 import Home from './views/Home/Home';
+import Login from './views/Login/Login';
 
 function App() {
   return (
@@ -13,8 +14,9 @@ function App() {
         <div id="content-wrap">
           <Navbar />
           <Routes>
-            <Route path="/register" element={<Register />}/>
             <Route path="/" element={<Home />}/>
+            <Route path="/register" element={<Register />}/>
+            <Route path="/login" element={<Login />} />
           </Routes>
           <Footer />
         </div>
