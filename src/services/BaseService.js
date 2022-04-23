@@ -18,6 +18,8 @@ const create = ({ useAccessToken } = { useAccessToken: true }) => {
     )
 
     http.interceptors.response.use((response) => response.data)
+
+    return http;
 }
 
 export default create
