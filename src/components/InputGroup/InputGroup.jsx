@@ -1,16 +1,17 @@
 import react from "react";
 import './InputGroup.scss';
 
-const InputGroup = ({ id, type, placeholder, register }) => {
+const InputGroup = ({ id, type, placeholder, register, error }) => {
     return (
         <div>
             <input
                 type={type}
-                className="mb-3"
+                className={`mt-3 form-control ${error ? 'is-invalid' : '' }`}
                 id={id}
                 placeholder={placeholder}
                 {...register(id)}
             />
+            { error && <div className="invalid-feedback">{error}</div> }
         </div>
     )
 };
