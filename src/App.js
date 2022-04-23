@@ -6,6 +6,7 @@ import { Route, Routes } from 'react-router-dom';
 import Register from './views/Register/Register';
 import Home from './views/Home/Home';
 import Login from './views/Login/Login';
+import Profile from './views/Profile/Profile';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
             <Route path="/" element={<Home />}/>
             <Route path="/register" element={<Register />}/>
             <Route path="/login" element={<Login />} />
+            <Route path="/profile" element={<Profile />} />
           </Routes>
           <Footer />
         </div>
