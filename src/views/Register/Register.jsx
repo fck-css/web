@@ -22,13 +22,21 @@ const Register = () => {
     });
     
     const onSubmit = data => {
-        console.log('entra');
         setIsSubmiting(true);
+        const { image, ...rest } = data;
 
-        registerRequest(data)
-            .then(user => navigate('/login'))
+        const bodyFormData = new FormData();
+        Object.keys(rest).forEach(key => {
+            bodyFormData.append(key, rest[key])
+        });
+
+        if (image[0]){
+            bodyFormData.append('image', image[0]);
+        };
+
+        registerRequest(bodyFormData)
+        .then(user => navigate('/login'))
             .catch(err => {
-                console.log(err.response)
                 if(err.response.status === 409){
                     setError('email', {message: 'Email already exists'})
                 }
@@ -60,6 +68,12 @@ const Register = () => {
                     id="password"
                     register={ register }
                     error={errors.password?.message}
+                />
+                <InputGroup
+                    type="file"
+                    id="image"
+                    register={ register }
+                    error={errors.image?.message}
                 />
                 <button className={`mt-3 btn btn-${isSubmiting ? 'secondary' : 'dark'}`}>{isSubmiting ? 'Registering...' : 'Submit'}</button>
             </form>

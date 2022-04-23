@@ -20,7 +20,7 @@ const Login = () => {
     const { register, handleSubmit, formState:{ errors }} = useForm({ resolver: yupResolver(schema)})
 
     let location = useLocation()
-    let from = location.state?.from?.pathname || '/home'
+    let from = location.state?.from?.pathname || '/profile'
     const navigate = useNavigate()
 
     const { login } = useAuthContext()
@@ -55,7 +55,7 @@ const Login = () => {
                     register={register}
                     type="password"
                 />
-                <button className="mt-1">Submit</button>
+                <button className={`mt-3 btn btn-${isSubmitting ? 'secondary' : 'dark'}`}>{isSubmitting ? 'Registering...' : 'Submit'}</button>
             </form>
         </div>
     )
