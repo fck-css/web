@@ -1,9 +1,12 @@
 import react, { useState } from "react";
+import { useLocation, useNavigate } from 'react-router-dom'
 import { useForm } from "react-hook-form"
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup';
+import { login as loginRequest }  from "../../services/AuthService";
 import InputGroup from "../../components/InputGroup/InputGroup";
 import './Login.scss';
+import { useAuthContext } from "../../contexts/AuthContext/AuthContext";
 
 const schema = yup.object({
     email: yup.string().email().required(),
@@ -13,10 +16,25 @@ const schema = yup.object({
 const Login = () => {
     const [error, setError] = useState()
     const [isSubmitting, setIsSubmitting] = useState()
+
     const { register, handleSubmit, formState:{ errors }} = useForm({ resolver: yupResolver(schema)})
 
-    const onSubmit = () => {
-        console.log('submit')
+    let location = useLocation()
+    let from = location.state?.from?.pathname || '/home'
+    const navigate = useNavigate()
+
+    const { login } = useAuthContext()
+
+    const onSubmit = (data) => {
+        setError(undefined)
+        setIsSubmitting(true)
+
+        loginRequest(data)
+            .then(res => {
+                login(res.access_token, () => navigate(from, { replace: true }))
+            })
+            .catch(error => setError(error?.response?.data?.message))
+            .finally(() => setIsSubmitting(false))        
     }
 
 
