@@ -1,5 +1,6 @@
 import react from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { logout as doLogout } from "../../store/accessTokenStore";
 import './Navbar.scss';
 
 const Navbar = () => {
@@ -20,7 +21,7 @@ const Navbar = () => {
                   </div>
                   <Link className="navbar-brand" to="/register">Sign Up</Link>
                   <Link className="navbar-brand" to="/login">Log In</Link>
-                  <a className="navbar-brand" href="/">Profile</a>
+                  <a className="navbar-brand" href="/profile">Profile</a>
                 </div>
               </div>
             </nav>
