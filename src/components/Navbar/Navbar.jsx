@@ -1,9 +1,12 @@
 import react from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useAuthContext } from "../../contexts/AuthContext/AuthContext";
 import { logout as doLogout } from "../../store/accessTokenStore";
 import './Navbar.scss';
 
 const Navbar = () => {
+  const { user } = useAuthContext()
+
     return (
         <>
             <nav className="container navbar">
@@ -19,9 +22,15 @@ const Navbar = () => {
                     <div className="dropdown-divider"></div>
                     <a className="dropdown-item" href="/">Something else here</a>
                   </div>
-                  <Link className="navbar-brand" to="/register">Sign Up</Link>
-                  <Link className="navbar-brand" to="/login">Log In</Link>
-                  <a className="navbar-brand" href="/profile">Profile</a>
+                  {!user ?
+                  <>
+                    <Link className="navbar-brand" to="/register">Sign Up</Link>
+                    <Link className="navbar-brand" to="/login">Log In</Link>
+                  </>
+                    :
+                    <Link className="navbar-brand" to="/profile">Profile</Link>
+
+                  }
                 </div>
               </div>
             </nav>
