@@ -47,12 +47,14 @@ const Login = () => {
                     placeholder="Email"
                     id="email"
                     register={register}
+                    error={error}
                     type="email"
                 />
                 <InputGroup
                     placeholder="Password"
                     id="password"
                     register={register}
+                    error={error}
                     type="password"
                 />
                 <button className={`mt-3 btn btn-${isSubmitting ? 'secondary' : 'dark'}`}>{isSubmitting ? 'Registering...' : 'Submit'}</button>
