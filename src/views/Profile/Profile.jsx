@@ -1,5 +1,4 @@
 import react from "react";
-import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../../contexts/AuthContext/AuthContext";
 import { logout as doLogout } from "../../store/accessTokenStore";
 import './Profile.scss';
@@ -8,11 +7,9 @@ import buttonSample from '../../assets/button-sample.png'
 
 const Profile = () => {
     const { user } = useAuthContext();
-    const navigate = useNavigate();
 
     const logout = () => {
         doLogout();
-        navigate('/login');
     }
 
     return(

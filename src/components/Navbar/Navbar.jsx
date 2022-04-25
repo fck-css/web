@@ -1,4 +1,4 @@
-import react from "react";
+import react, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuthContext } from "../../contexts/AuthContext/AuthContext";
 import { logout as doLogout } from "../../store/accessTokenStore";
@@ -29,7 +29,6 @@ const Navbar = () => {
                   </>
                     :
                     <Link className="navbar-brand" to="/profile">Profile</Link>
-
                   }
                 </div>
               </div>
