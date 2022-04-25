@@ -1,0 +1,163 @@
+@import '../../variables';
+
+/* FIRST SECTION */
+
+.home-page .hero {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 80vh;
+    margin-top: 20px;
+}
+
+.hero-text {
+    width: 35%;
+    text-align: start;
+    margin-left: 20px;
+}
+
+.hero-text h1 {
+    font-weight: 600;
+    font-size: 55px;
+}
+
+.home-btn {
+    background-color: $mint-green-color;
+    width: 200px;
+    margin-top: 50px;
+    font-size: 18px;
+    font-weight: 600;
+    color: $brown-color;
+    padding: 10px 0;
+}
+
+.home-btn:hover {
+    background-color: $light-green-color;
+}
+
+.hero-imgs {
+    width: 45%;
+    position: relative;
+    height: 50vh;
+    margin-top: 35px;
+}
+
+.laptop-img {
+    width: 350px;
+    position: absolute;
+    top: 25%;
+    left: 27%;
+    animation-name: moving-up;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes moving-up{
+    0% {
+        top: 25%
+    }
+    50% {
+        top: 20%
+    }
+    100% {
+        top: 25%
+    }
+}
+
+.person-img {
+    width: 70px;
+    position: absolute;
+    top: 3%;
+    left: 63%;
+    z-index: 2;
+    animation-name: moving-down;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes moving-down{
+    0% {
+        top: 3%
+    }
+    50% {
+        top: 5%
+    }
+    100% {
+        top: 3%
+    }
+}
+
+.table-img {
+    width: 80px;
+    position: absolute;
+    top: 45%;
+    right: 2%;
+    z-index: 2;
+    animation-name: moving-right;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes moving-right{
+    0% {
+        right: 2%
+    }
+    50% {
+        right: -1%
+    }
+    100% {
+        right: 2%
+    }
+}
+
+.conversation-img {
+    width: 100px;
+    position: absolute;
+    top: 36%;
+    left: 25%;
+    z-index: 2;
+    animation-name: moving-left;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes moving-left{
+    0% {
+        left: 25%
+    }
+    50% {
+        left: 22%
+    }
+    100% {
+        left: 25%
+    }
+}
+
+/* SECOND SECTION */
+
+.home-page .tools {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 80vh;
+    background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(191,255,188,1) 50%, rgba(255,255,255,1) 100%);
+    padding: 0 60px;
+}
+
+.home-page .tools h3 {
+    font-weight: 600;
+}
+
+/* THIRD SECTION */
+
+.home-page .functionalities {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+}
+
+
+
+
+

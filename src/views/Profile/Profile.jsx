@@ -5,8 +5,6 @@ import './Profile.scss';
 const Profile = () => {
     const { user } = useAuthContext();
 
-    
-
     return(
         <div className="profile-page">
             <h1>Profile</h1>
