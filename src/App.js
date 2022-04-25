@@ -8,6 +8,7 @@ import Home from './views/Home/Home';
 import Login from './views/Login/Login';
 import Profile from './views/Profile/Profile';
 import { useAuthContext } from './contexts/AuthContext/AuthContext';
+import ProtectedRoute from './guard/ProtectedRoute';
 
 function App() {
   const { isAuthenticationFetched } = useAuthContext()
@@ -25,7 +26,10 @@ function App() {
               <Route path="/" element={<Home />}/>
               <Route path="/register" element={<Register />}/>
               <Route path="/login" element={<Login />} />
-              <Route path="/profile" element={<Profile />} />
+
+              <Route element={<ProtectedRoute />}>
+                <Route path="/profile" element={<Profile />} />
+              </Route>
             </Routes>
             }
           </div>
