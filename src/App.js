@@ -1,5 +1,5 @@
 import './App.scss';
-import react from 'react';
+import react, { useState } from 'react';
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
 import { Route, Routes } from 'react-router-dom';
@@ -9,9 +9,11 @@ import Login from './views/Login/Login';
 import Profile from './views/Profile/Profile';
 import { useAuthContext } from './contexts/AuthContext/AuthContext';
 import ProtectedRoute from './guard/ProtectedRoute';
+import Toast from './components/Toast/Toast';
 
 function App() {
-  const { isAuthenticationFetched } = useAuthContext()
+  const { isAuthenticationFetched, toast } = useAuthContext()
+  console.log(toast)
 
   return (
     <div className="App">
@@ -33,7 +35,7 @@ function App() {
             </Routes>
             }
           </div>
-
+          {toast && <Toast type={toast.type}>{toast.message}</Toast>}
           <Footer />
       </div>
     </div>

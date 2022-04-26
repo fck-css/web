@@ -6,6 +6,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import InputGroup from "../../components/InputGroup/InputGroup";
 import { register as registerRequest } from '../../services/AuthService.js';
 import './Register.scss';
+import { useAuthContext } from "../../contexts/AuthContext/AuthContext";
 
 const schema = yup.object({
     name: yup.string().required(),
@@ -16,6 +17,7 @@ const schema = yup.object({
 const Register = () => {
     const [isSubmiting, setIsSubmiting] = useState(false);
     const navigate = useNavigate();
+    const { createToast } = useAuthContext()
 
     const { register, handleSubmit, setError, formState: { errors } } = useForm({
         resolver: yupResolver(schema)
@@ -35,7 +37,10 @@ const Register = () => {
         };
 
         registerRequest(bodyFormData)
-        .then(user => navigate('/login'))
+            .then(user => {
+                navigate('/login')
+                createToast('Registered successfully!', 'success')
+            })
             .catch(err => {
                 if(err.response.status === 409){
                     setError('email', {message: 'Email already exists'})
