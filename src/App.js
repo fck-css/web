@@ -9,6 +9,7 @@ import Login from './views/Login/Login';
 import Profile from './views/Profile/Profile';
 import { useAuthContext } from './contexts/AuthContext/AuthContext';
 import ProtectedRoute from './guard/ProtectedRoute';
+import Message from './components/Message/Message';
 
 function App() {
   const { isAuthenticationFetched } = useAuthContext()
@@ -33,7 +34,7 @@ function App() {
             </Routes>
             }
           </div>
-
+          <Message />
           <Footer />
       </div>
     </div>
