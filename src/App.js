@@ -10,6 +10,7 @@ import Profile from './views/Profile/Profile';
 import { useAuthContext } from './contexts/AuthContext/AuthContext';
 import ProtectedRoute from './guard/ProtectedRoute';
 import Toast from './components/Toast/Toast';
+import UnprotectedRoute from './guard/UnprotectedRoute';
 
 function App() {
   const { isAuthenticationFetched, toast } = useAuthContext()
@@ -25,9 +26,12 @@ function App() {
             <p>Loading...</p>
             :
             <Routes>
-              <Route path="/" element={<Home />}/>
-              <Route path="/register" element={<Register />}/>
-              <Route path="/login" element={<Login />} />
+
+              <Route element={<UnprotectedRoute />}>
+                <Route path="/" element={<Home />}/>
+                <Route path="/register" element={<Register />}/>
+                <Route path="/login" element={<Login />} />
+              </Route>
 
               <Route element={<ProtectedRoute />}>
                 <Route path="/profile" element={<Profile />} />
