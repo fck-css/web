@@ -11,7 +11,7 @@ export const useAuthContext = () => useContext(AuthContext)
 export const AuthContextProvider = ({ children }) => {
     const [user, setUser] = useState()
     const [isAuthenticationFetched, setIsAuthenticationFetched] = useState()
-
+    const [toast, setToast] = useState()
 
     const login = (token, navigate) => {
         setAccessToken(token)
@@ -26,6 +26,13 @@ export const AuthContextProvider = ({ children }) => {
                 setIsAuthenticationFetched(true)
                 callback && callback()
             })
+    }
+
+    const createToast = (message, type) => {
+        setToast({message: message, type: type})
+        setTimeout(() => {
+            setToast()
+        }, 3600);
     }
 
     useEffect(() => {
@@ -44,7 +51,9 @@ export const AuthContextProvider = ({ children }) => {
         user,
         isAuthenticationFetched,
         login,
-        getUser
+        getUser,
+        toast,
+        createToast
     }
 
     return (
