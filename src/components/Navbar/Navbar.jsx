@@ -9,29 +9,37 @@ const Navbar = () => {
 
     return (
         <>
-            <nav className="container navbar">
-              <div className="container-fluid">
+            <nav className="container navbar navbar-expand-lg">
                 <a className="navbar-brand" href="/">F*ck CSS</a>
-                <div className="tools-profile-div">
-                  <a className="nav-link" href="/" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Tools
-                  </a>
-                  <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a className="dropdown-item" href="/">Action</a>
-                    <a className="dropdown-item" href="/">Another action</a>
-                    <div className="dropdown-divider"></div>
-                    <a className="dropdown-item" href="/">Something else here</a>
-                  </div>
-                  {!user ?
-                  <>
-                    <Link className="navbar-brand" to="/register">Sign Up</Link>
-                    <Link className="navbar-brand" to="/login">Log In</Link>
-                  </>
-                    :
-                    <Link className="navbar-brand" to="/profile">Profile</Link>
-                  }
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul class="navbar-nav mr-auto">
+                    <li class="nav-item dropdown">
+                      <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Tools
+                      </a>
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <Link to="/box-shadow">Box-Shadow Generator</Link>
+                      </div>
+                    </li>
+                    {!user ?
+                      <>
+                        <li class="nav-item active">
+                          <Link className="navbar-brand" to="/register">Sign Up</Link>
+                        </li>
+                        <li class="nav-item">
+                          <Link className="navbar-brand" to="/login">Log In</Link>
+                        </li>
+                      </> 
+                        :
+                      <Link className="navbar-brand" to="/profile">Profile</Link>
+                    }
+                  </ul>
                 </div>
-              </div>
+
             </nav>
         </>
     )

@@ -1,0 +1,64 @@
+@import '../../variables';
+
+.box-shadow-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+/* BOX SHADOW RESULTS */
+
+.box-shadow-result {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.box-shadow-css-rules-div {
+    width: 40vw;
+}
+
+.box-shadow-element {
+    width: 40vw;
+}
+
+.box-shadow-css-rules {
+    width: 300px;
+    height: 200px;
+    background-color: #E3E7FB;
+    margin: 0 auto 20px auto;
+}
+
+.box-shadow-result {
+    width: 70vw;
+    margin-bottom: 50px;
+}
+
+.box-shadow-rectangle {
+    width: 200px;
+    height: 200px;
+    background-color: $light-green-color;
+    margin: 0 auto;
+}
+
+/* BOX SHADOW INPUT GROUP */
+
+.box-shadow-input-group {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: flex-start;
+}
+
+.box-shadow-input {
+    width: 280px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.box-shadow-input label, .box-shadow-input input {
+    width: 250px;
+}
