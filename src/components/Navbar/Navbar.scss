@@ -3,15 +3,37 @@
 .navbar {
     background-color: transparent;
     height: 130px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .navbar a {
     color: $brown-color;
     font-size: 1.25rem;
+    text-decoration: none;
 }
 
-.tools-profile-div {
+#navbarSupportedContent {
+    flex-grow: initial;
+}
+
+.navbar-nav {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.navbar-nav li:first-child {
+    margin-right: 10px;
+}
+
+.dropdown-menu {
+    width: 230px;
+    padding: 8px;
+    font-size: 10px !important;
+}
+
+.dropdown-menu a {
+    font-size: 18px;
 }
