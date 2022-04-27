@@ -1,0 +1,69 @@
+@import '../../variables.scss';
+
+.Flexbox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.child-count-div {
+    display: flex;
+    align-items: center;
+}
+
+.child-count-title {
+    margin-right: 10px;
+}
+
+.child-count {
+    width: 50px;
+    height: 50px;
+    margin-left: 20px;
+}
+
+.parent-output-div {
+    margin-top: 20px;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.parent-div {
+    margin-right: 40px;
+    width: 80%;
+    max-width: 650px;
+    border: 1px solid;
+    height: 350px;
+    display: flex;
+}
+
+.output {
+    padding: 20px;
+    width: 300px;
+    height: 230px;
+    background-color: $light-blue;
+    text-align: start;
+}
+
+.output > div > p, .output > p {
+    margin: 0;
+}
+
+.code-text {
+    margin-left: 20px;
+}
+
+.attributes-div {
+    display: flex;
+    width: 90%;
+    justify-content: space-around;
+    margin-top: 30px;
+    text-align: left;;
+}
+
+input {
+    margin: 6px;
+}

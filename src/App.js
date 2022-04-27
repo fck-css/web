@@ -11,6 +11,7 @@ import { useAuthContext } from './contexts/AuthContext/AuthContext';
 import ProtectedRoute from './guard/ProtectedRoute';
 import Toast from './components/Toast/Toast';
 import UnprotectedRoute from './guard/UnprotectedRoute';
+import Flexbox from './views/Flexbox/Flexbox';
 
 function App() {
   const { isAuthenticationFetched, toast } = useAuthContext()
@@ -32,6 +33,8 @@ function App() {
                 <Route path="/register" element={<Register />}/>
                 <Route path="/login" element={<Login />} />
               </Route>
+
+              <Route path="/flexbox" element={<Flexbox />} />
 
               <Route element={<ProtectedRoute />}>
                 <Route path="/profile" element={<Profile />} />
