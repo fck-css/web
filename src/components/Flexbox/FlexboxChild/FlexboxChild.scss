@@ -1,0 +1,8 @@
+@import '../../../variables';
+
+.FlexboxChild {
+    width: 80px;
+    height: 80px;
+    background-color: $light-green-color;
+    border: 0.5px solid;
+}
