@@ -1,5 +1,6 @@
 import react, { useState } from 'react';
 import FlexboxChild from '../../components/Flexbox/FlexboxChild/FlexboxChild';
+import { useAuthContext } from '../../contexts/AuthContext/AuthContext';
 import './Flexbox.scss'
 
 const initialOutput = {
@@ -15,6 +16,8 @@ const Flexbox = () => {
     const [childCount, setChildCount] = useState(4)
     const [output, setOutput] = useState(initialOutput)
 
+    const { createToast } = useAuthContext()
+
     const handleChange = (event) => {
         const { name, value } = event.target
         setOutput({
@@ -23,9 +26,23 @@ const Flexbox = () => {
         })
     }
 
+    const copyText = () => {
+        const text = Array.from(document.getElementsByClassName("line-code")).map(p => p.innerHTML).join("\r\n")
+        navigator.clipboard.writeText(text)
+        createToast("Copied to clipboard", "success")
+    }
+    
+
     return (
         <div className="Flexbox">
          
+
+
+            <div className="parent-output-div">
+                <div className="parent-div" style={output}>
+                    {Array.from(Array(childCount).keys()).map(child => <FlexboxChild number={child} />)}
+                </div>
+                <div>
             <div className="child-count-div">
                 <h2 className="child-count-title">Child count:</h2>
                 <input
@@ -36,28 +53,25 @@ const Flexbox = () => {
                 value={childCount}
                 />
             </div>
-
-            <div className="parent-output-div">
-                <div className="parent-div" style={output}>
-                    {Array.from(Array(childCount).keys()).map(child => <FlexboxChild number={child}/>)}
-                </div>
-                <div>
-                    <h4>CSS output:</h4>
                     <div className="output">
                         <p> {`{`}</p>
                         <div className="code-text">
-                            <p> {`display: flex;`}</p>
-                            <p> {`flex-direction: ${output['flex-direction']};`}</p>
-                            <p> {`flex-wrap: ${output['flex-wrap']};`}</p>
-                            <p> {`justify-content: ${output['justify-content']};`}</p>
-                            <p> {`align-items: ${output['align-items']};`}</p>
-                            <p> {`align-content: ${output['align-content']};`}</p>
+                            <p className="line-code">{`display: flex;`}</p>
+                            <p className="line-code">{`flex-direction: ${output['flex-direction']};`}</p>
+                            <p className="line-code">{`flex-wrap: ${output['flex-wrap']};`}</p>
+                            <p className="line-code">{`justify-content: ${output['justify-content']};`}</p>
+                            <p className="line-code">{`align-items: ${output['align-items']};`}</p>
+                            <p className="line-code">{`align-content: ${output['align-content']};`}</p>
                         </div>
                         <p> {`}`}</p>
+
+                        
                     </div>
 
+                    
+
                     <div className="flexbox-buttons">
-                        <button className='btn btn-dark'>Copy Rules</button>
+                        <button className='btn btn-dark' onClick={copyText}>Copy Rules</button>
                         <button className='btn btn-dark'>Save Code</button>
                     </div>
                 </div>
