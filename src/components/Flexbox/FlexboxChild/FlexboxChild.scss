@@ -5,4 +5,14 @@
     height: 80px;
     background-color: $light-green-color;
     border: 0.5px solid;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.FlexboxChild > p {
+    margin: 0;
+    font-size: 20px;
+    font-weight: bold;
 }

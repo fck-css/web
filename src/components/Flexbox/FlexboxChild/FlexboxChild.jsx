@@ -1,11 +1,11 @@
 import react from 'react'
 import './FlexboxChild.scss'
 
-const FlexboxChild = () => {
+const FlexboxChild = ({ number }) => {
 
     return (
         <div className="FlexboxChild">
-
+            <p>{number + 1}</p>
         </div>
     )
 }
