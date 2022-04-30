@@ -5,6 +5,8 @@
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
+    margin-bottom: 160px;
+    margin-right: 7%;
 }
 
 /* BOX SHADOW RESULTS */
@@ -13,29 +15,38 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0 auto;
+    margin: 0 auto 85px 60px;
+    width: 75vw;
 }
 
 .box-shadow-css-rules-div {
     width: 40vw;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .box-shadow-element {
-    width: 30vw;
+    width: 40vw;
+    height: 200px;
+    margin-right: 60px;
 }
 
 .box-shadow-css-rules {
     padding: 20px;
-    width: 300px;
-    height: 230px;
+    width: 500px;
+    height: 100px;
     background-color: #E3E7FB;
-    margin: 10px auto 0 auto;
+    margin: 20px auto 0 auto;
     text-align: start;
     border-radius: 10px;
 }
 
 .code-text {
     margin-left: 40px;
+    width: 420px;
 }
 
 .box-shadow-css-rules > div > p, .box-shadow-css-rules > p {
@@ -44,11 +55,7 @@
 
 .box-shadow-css-rules > p {
     margin-left: 10px;
-}
-
-.box-shadow-result {
-    width: 70vw;
-    margin-bottom: 50px;
+    margin-top: -3.5px;
 }
 
 .box-shadow-rectangle {
@@ -62,15 +69,11 @@
     border-radius: 10px;
 }
 
-.box-shadow-rectangle p {
-    margin: 0;
-}
-
 /* BOX SHADOW BTNS */
 
 .box-shadow-btns {
+    width: 230px;
     display: flex;
-    flex-direction: column;
     justify-content: space-between;
     align-items: center;
     height: 80px;
@@ -86,10 +89,12 @@
     display: flex;
     justify-content: space-evenly;
     align-items: flex-start;
+    width: 50vw;
+    margin-right: 20px;
 }
 
 .box-shadow-input {
-    width: 280px;
+    width: 180px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -113,4 +118,26 @@
 
 .form-switch .form-check-input:hover {
     cursor: pointer;
+}
+
+.box-shadow-input-group-4 input {
+    width: 80px;
+}
+
+.box-shadow-input-group-4 {
+    width: 80px;
+}
+
+.box-shadow-input input[type=range] {
+    width: 100px;
+    background-color: $brown-color;
+    border-color: internal #5f584c !important;
+}
+
+.box-shadow-input input[type=range i] {
+    color: $brown-color;
+}
+
+.box-shadow-input-group-4 .box-shadow-input:last-child label {
+    margin-top: -12px;
 }

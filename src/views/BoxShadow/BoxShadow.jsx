@@ -1,4 +1,5 @@
 import react, { useState, useEffect } from 'react';
+import { useAuthContext } from '../../contexts/AuthContext/AuthContext';
 import './BoxShadow.scss';
 
 const cssDefaultValues = {
@@ -6,7 +7,7 @@ const cssDefaultValues = {
     verticalShadowLength: 10,
     blurRadius: 5,
     spreadRadius: 0,
-    shadowColor: '#000',
+    shadowColor: '#CFCDE9',
     opacity: 1,
     backgroundColor: '#BFFFBC',
     inset: false,
@@ -20,7 +21,9 @@ const BoxShadow = () => {
             ...cssRules,
             [propr]: value
         })
-    }
+    };
+
+    const { createToast } = useAuthContext();
 
     function hexToRgbA(hex){
         var c;
@@ -36,7 +39,10 @@ const BoxShadow = () => {
 
     const boxShadow = `${cssRules.horizontalShadowLength}px ${cssRules.verticalShadowLength}px ${cssRules.blurRadius}px ${cssRules.spreadRadius}px ${hexToRgbA(cssRules.shadowColor)} ${cssRules.inset ? 'inset' : ''}`;
 
-    console.log(boxShadow);
+    const copyText = () => {
+        navigator.clipboard.writeText(`box-shadow: ${boxShadow}`);
+        createToast("Copied to clipboard", "success");
+    };
 
     return (
         <div className='container box-shadow-page'>
@@ -49,22 +55,21 @@ const BoxShadow = () => {
                             boxShadow: boxShadow
                         }}
                     >
-                        <p>Preview</p>
                     </div>
                 </div>
 
-                <div className="box-shadow-btns">
-                    <button className='btn btn-dark'>Copy Rules</button>
-                    <button className='btn btn-dark'>Save Code</button>
-                </div>
 
                 <div className='box-shadow-css-rules-div'>
                     <div className='box-shadow-css-rules'>
                         <p> {`{`}</p>
                             <div className="code-text">
-                                <p> {`display: flex;`}</p>
+                                <p>box-shadow: {boxShadow}</p>
                             </div>
                         <p> {`}`}</p>
+                    </div>
+                    <div className="box-shadow-btns">
+                        <button className='btn btn-dark' onClick={() => copyText()}>Copy Rules</button>
+                        <button className='btn btn-dark'>Save Code</button>
                     </div>
                 </div>
             </div>
@@ -103,11 +108,11 @@ const BoxShadow = () => {
                 <div className='box-shadow-input-group-4'>
                     <div className='box-shadow-input'>
                         <label htmlFor="shadow-color">Shadow Color</label>
-                        <input type="color" id="shadow-color"  onChange={(e) => updateCssRules('shadowColor', e.target.value)}/>
+                        <input type="color" id="shadow-color" value={cssRules.shadowColor} onChange={(e) => updateCssRules('shadowColor', e.target.value)}/>
                     </div>
                     <div className='box-shadow-input'>
                         <label htmlFor="box-color">Box Color</label>
-                        <input type="color" id="box-color"  onChange={(e) => updateCssRules('backgroundColor', e.target.value)}/>
+                        <input type="color" id="box-color" value={cssRules.backgroundColor} onChange={(e) => updateCssRules('backgroundColor', e.target.value)}/>
                     </div>
                 </div>
             </div>
