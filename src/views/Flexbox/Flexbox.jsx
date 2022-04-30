@@ -20,7 +20,7 @@ const Flexbox = () => {
         setOutput({
             ...output,
             [name]: value
-          })
+        })
     }
 
     return (
@@ -39,7 +39,7 @@ const Flexbox = () => {
 
             <div className="parent-output-div">
                 <div className="parent-div" style={output}>
-                    {Array(childCount).fill(<FlexboxChild />)}
+                    {Array.from(Array(childCount).keys()).map(child => <FlexboxChild number={child}/>)}
                 </div>
                 <div>
                     <h4>CSS output:</h4>
@@ -54,6 +54,11 @@ const Flexbox = () => {
                             <p> {`align-content: ${output['align-content']};`}</p>
                         </div>
                         <p> {`}`}</p>
+                    </div>
+
+                    <div className="flexbox-buttons">
+                        <button className='btn btn-dark'>Copy Rules</button>
+                        <button className='btn btn-dark'>Save Code</button>
                     </div>
                 </div>
             </div>
