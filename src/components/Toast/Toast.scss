@@ -2,8 +2,8 @@
 
 .Toast {
     width: fit-content;
-    position: absolute;
-    top: 650px;
+    position: fixed;
+    top: 80vh;
     left: calc(100vw - 230px);
     text-align: left;
     display: flex;

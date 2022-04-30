@@ -6,6 +6,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 3%;
 }
 
 .navbar a {
@@ -30,8 +31,19 @@
 
 .dropdown-menu {
     width: 230px;
-    padding: 8px;
+    padding: 10px 20px;
     font-size: 10px !important;
+}
+
+.dropdown-menu.show {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.dropdown-menu.show a:hover {
+    color: $purple-color;
 }
 
 .dropdown-menu a {
