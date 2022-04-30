@@ -16,7 +16,6 @@ import BoxShadow from './views/BoxShadow/BoxShadow';
 
 function App() {
   const { isAuthenticationFetched, toast } = useAuthContext()
-  console.log(toast)
 
   return (
     <div className="App">

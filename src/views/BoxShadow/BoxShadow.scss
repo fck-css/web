@@ -11,8 +11,9 @@
 
 .box-shadow-result {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
+    margin: 0 auto;
 }
 
 .box-shadow-css-rules-div {
@@ -20,14 +21,29 @@
 }
 
 .box-shadow-element {
-    width: 40vw;
+    width: 30vw;
 }
 
 .box-shadow-css-rules {
+    padding: 20px;
     width: 300px;
-    height: 200px;
+    height: 230px;
     background-color: #E3E7FB;
-    margin: 0 auto 20px auto;
+    margin: 10px auto 0 auto;
+    text-align: start;
+    border-radius: 10px;
+}
+
+.code-text {
+    margin-left: 40px;
+}
+
+.box-shadow-css-rules > div > p, .box-shadow-css-rules > p {
+    margin: 0;
+}
+
+.box-shadow-css-rules > p {
+    margin-left: 10px;
 }
 
 .box-shadow-result {
@@ -40,6 +56,28 @@
     height: 200px;
     background-color: $light-green-color;
     margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.box-shadow-rectangle p {
+    margin: 0;
+}
+
+/* BOX SHADOW BTNS */
+
+.box-shadow-btns {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+}
+
+.box-shadow-btns button {
+    width: 110px;
 }
 
 /* BOX SHADOW INPUT GROUP */
@@ -61,4 +99,18 @@
 
 .box-shadow-input label, .box-shadow-input input {
     width: 250px;
+}
+
+.form-switch {
+    padding: 0;
+}
+
+.form-switch .form-check-input {
+    margin-left: 6px;
+    width: 40px;
+    height: 22px;
+}
+
+.form-switch .form-check-input:hover {
+    cursor: pointer;
 }

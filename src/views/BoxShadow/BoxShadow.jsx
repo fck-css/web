@@ -1,21 +1,71 @@
-import react from 'react';
+import react, { useState, useEffect } from 'react';
 import './BoxShadow.scss';
 
+const cssDefaultValues = {
+    horizontalShadowLength: 10,
+    verticalShadowLength: 10,
+    blurRadius: 5,
+    spreadRadius: 0,
+    shadowColor: '#000',
+    opacity: 1,
+    backgroundColor: '#BFFFBC',
+    inset: false,
+}
+
 const BoxShadow = () => {
+    const [cssRules, setCssRules] = useState(cssDefaultValues);
+
+    const updateCssRules = (propr, value) => {
+        setCssRules({
+            ...cssRules,
+            [propr]: value
+        })
+    }
+
+    function hexToRgbA(hex){
+        var c;
+        if(/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)){
+            c= hex.substring(1).split('');
+            if(c.length === 3){
+                c= [c[0], c[0], c[1], c[1], c[2], c[2]];
+            }
+            c= '0x'+c.join('');
+            return 'rgba('+[(c>>16)&255, (c>>8)&255, c&255].join(',')+`,${cssRules.opacity})`;
+        }
+    }
+
+    const boxShadow = `${cssRules.horizontalShadowLength}px ${cssRules.verticalShadowLength}px ${cssRules.blurRadius}px ${cssRules.spreadRadius}px ${hexToRgbA(cssRules.shadowColor)} ${cssRules.inset ? 'inset' : ''}`;
+
+    console.log(boxShadow);
+
     return (
         <div className='container box-shadow-page'>
             <div className='box-shadow-result'>
                 <div className='box-shadow-element'>
-                    <div className='box-shadow-rectangle'>
-
+                    <div 
+                        className='box-shadow-rectangle'
+                        style={{ 
+                            backgroundColor: `${cssRules.backgroundColor}`,
+                            boxShadow: boxShadow
+                        }}
+                    >
+                        <p>Preview</p>
                     </div>
+                </div>
+
+                <div className="box-shadow-btns">
+                    <button className='btn btn-dark'>Copy Rules</button>
+                    <button className='btn btn-dark'>Save Code</button>
                 </div>
 
                 <div className='box-shadow-css-rules-div'>
                     <div className='box-shadow-css-rules'>
-                        
+                        <p> {`{`}</p>
+                            <div className="code-text">
+                                <p> {`display: flex;`}</p>
+                            </div>
+                        <p> {`}`}</p>
                     </div>
-                    <button className='btn btn-dark'>Copy Rules</button>
                 </div>
             </div>
 
@@ -23,41 +73,41 @@ const BoxShadow = () => {
                 <div className='box-shadow-input-group-1'>
                     <div className='box-shadow-input'>
                         <label htmlFor="horizontal-shadow-length">Horizontal Shadow Length</label>
-                        <input type="text" id="horizontal-shadow-length" />
+                        <input type="range" min="-100" max="100" id="horizontal-shadow-length" onChange={(e) => updateCssRules('horizontalShadowLength', e.target.value)} />
                     </div>
                     <div className='box-shadow-input'>
                         <label htmlFor="vertical-shadow-length">Vertical Shadow Length</label>
-                        <input type="text" id="vertical-shadow-length" />
+                        <input type="range" min="-100" max="100" id="vertical-shadow-length"  onChange={(e) => updateCssRules('verticalShadowLength', e.target.value)} />
                     </div>
                 </div>
                 <div className='box-shadow-input-group-2'>
                     <div className='box-shadow-input'>
                         <label htmlFor="blur-radius">Blur Radius</label>
-                        <input type="text" id="blur-radius" />
+                        <input type="range" min="0" max="300" id="blur-radius"  onChange={(e) => updateCssRules('blurRadius', e.target.value)} />
                     </div>
                     <div className='box-shadow-input'>
                         <label htmlFor="spread-radius">Spread Radius</label>
-                        <input type="text" id="spread-radius" />
+                        <input type="range" min="0" max="200" id="spread-radius"  onChange={(e) => updateCssRules('spreadRadius', e.target.value)} />
                     </div>
                 </div>
                 <div className='box-shadow-input-group-3'>
                     <div className='box-shadow-input'>
-                        <label htmlFor="shadow-color">Shadow Color</label>
-                        <input type="text" id="shadow-color" />
-                    </div>
-                    <div className='box-shadow-input'>
                         <label htmlFor="shadow-color-opacity">Shadow Color Opacity</label>
-                        <input type="text" id="shadow-color-opacity" />
+                        <input type="range" min="0" max="1" step="0.01" id="shadow-color-opacity"  onChange={(e) => updateCssRules('opacity', e.target.value)} />
+                    </div>
+                    <div className='box-shadow-input form-check form-switch'>
+                        <label htmlFor="inset">Inset</label>
+                        <input className="form-check-input" type="checkbox" role="switch" id="inset" onChange={(e) => updateCssRules('inset', !cssRules.inset)} />
                     </div>
                 </div>
                 <div className='box-shadow-input-group-4'>
                     <div className='box-shadow-input'>
-                        <label htmlFor="inset">Inset</label>
-                        <input type="text" id="inset" />
+                        <label htmlFor="shadow-color">Shadow Color</label>
+                        <input type="color" id="shadow-color"  onChange={(e) => updateCssRules('shadowColor', e.target.value)}/>
                     </div>
                     <div className='box-shadow-input'>
                         <label htmlFor="box-color">Box Color</label>
-                        <input type="text" id="box-color" />
+                        <input type="color" id="box-color"  onChange={(e) => updateCssRules('backgroundColor', e.target.value)}/>
                     </div>
                 </div>
             </div>
