@@ -3,14 +3,13 @@ import { useAuthContext } from "../../contexts/AuthContext/AuthContext";
 import './Gradient.scss';
 
 const cssDefaultValues = {
-    type: 10,
-    verticalShadowLength: 10,
-    blurRadius: 5,
-    spreadRadius: 0,
-    shadowColor: '#CFCDE9',
-    opacity: 1,
-    backgroundColor: '#BFFFBC',
-    inset: false,
+    type: false,
+    degrees: 35,
+    colors: [
+        { color: '#BFFFBC', opacity: 1, stop: 0},
+        { color: '#b08528', opacity: 0.7, stop: 50},
+        { color: '#b04a94', opacity: 0.4, stop: 100}
+    ]
 }
 
 const Gradient = () => {
@@ -33,11 +32,11 @@ const Gradient = () => {
                 c= [c[0], c[0], c[1], c[1], c[2], c[2]];
             }
             c= '0x'+c.join('');
-            return 'rgba('+[(c>>16)&255, (c>>8)&255, c&255].join(',')+`,${cssRules.opacity})`;
+            return 'rgba('+[(c>>16)&255, (c>>8)&255, c&255];
         }
     }
 
-    const gradient = `${cssRules.horizontalShadowLength}px ${cssRules.verticalShadowLength}px ${cssRules.blurRadius}px ${cssRules.spreadRadius}px ${hexToRgbA(cssRules.shadowColor)} ${cssRules.inset ? 'inset' : ''}`;
+    const gradient = `${!cssRules.type ? 'linear-gradient' : 'radial-gradient'}(${cssRules.degrees}deg, ${cssRules.colors.map(el => ` ${hexToRgbA(el.color)}, ${el.opacity}) ${el.stop}%`)})`;
 
     const copyText = () => {
         navigator.clipboard.writeText(`background: ${gradient}`);
@@ -60,7 +59,7 @@ const Gradient = () => {
                     <div className='gradient-css-rules'>
                         <p> {`{`}</p>
                             <div className="code-text">
-                                <p>gradient: {gradient}</p>
+                                <p>background: {gradient}</p>
                             </div>
                         <p> {`}`}</p>
                     </div>
@@ -73,13 +72,30 @@ const Gradient = () => {
 
             <div className='gradient-input-group'>
                 <div className='gradient-input-group-1'>
-                    <div className='gradient-input'>
-                        <label htmlFor="horizontal-shadow-length">Horizontal Shadow Length</label>
-                        <input type="range" min="-100" max="100" id="horizontal-shadow-length" onChange={(e) => updateCssRules('horizontalShadowLength', e.target.value)} />
+                    <h4>Colors</h4>
+                    <div className="color-div">
+                        <div className='gradient-input'>
+                            <label htmlFor="color">Color</label>
+                            <input type="color" id="color" value={cssRules.colors[0].color} onChange={(e) => updateCssRules('horizontalShadowLength', e.target.value)} />
+                        </div>
+                        <div className='box-shadow-input'>
+                            <label htmlFor="color-opacity">Opacity</label>
+                            <input type="range" min="0" max="1" step="0.01" id="color-opacity" value={cssRules.colors[0].opacity} onChange={(e) => updateCssRules('opacity', e.target.value)} />
+                        </div>
+                        <div className='box-shadow-input'>
+                            <label htmlFor="color-stp">Stop</label>
+                            <input type="number" min="0" max="100" id="color-stop" value={cssRules.colors[0].stop} onChange={(e) => updateCssRules('opacity', e.target.value)} />
+                        </div>
+                    </div>
+                </div>
+                <div className='gradient-input-group-2'>
+                    <div className='box-shadow-input form-check form-switch'>
+                        <label htmlFor="type">linear | radial</label>
+                        <input className="form-check-input" type="checkbox" role="switch" id="type" onChange={(e) => updateCssRules('inset', !cssRules.type)} />
                     </div>
                     <div className='gradient-input'>
-                        <label htmlFor="vertical-shadow-length">Vertical Shadow Length</label>
-                        <input type="range" min="-100" max="100" id="vertical-shadow-length"  onChange={(e) => updateCssRules('verticalShadowLength', e.target.value)} />
+                        <label htmlFor="degrees">Degrees</label>
+                        <input type="range" min="-100" max="100" id="degrees"  onChange={(e) => updateCssRules('verticalShadowLength', e.target.value)} />
                     </div>
                 </div>
             </div>

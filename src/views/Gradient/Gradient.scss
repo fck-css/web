@@ -1,0 +1,140 @@
+@import '../../variables';
+
+.gradient-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 160px;
+}
+
+/* BOX SHADOW RESULTS */
+
+.gradient-result {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 0 85px 0;
+    width: 65vw;
+}
+
+.gradient-css-rules-div {
+    width: 40vw;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.gradient-element {
+    width: 40vw;
+    height: 200px;
+    margin-right: 60px;
+}
+
+.gradient-css-rules {
+    padding: 20px;
+    width: 500px;
+    height: 100px;
+    background-color: #E3E7FB;
+    margin: 20px auto 0 auto;
+    text-align: start;
+    border-radius: 10px;
+}
+
+.code-text {
+    margin-left: 40px;
+    width: 420px;
+}
+
+.gradient-css-rules > div > p, .gradient-css-rules > p {
+    margin: 0;
+}
+
+.gradient-css-rules > p {
+    margin-left: 10px;
+    margin-top: -3.5px;
+}
+
+.gradient-rectangle {
+    width: 500px;
+    height: 200px;
+    background-color: $light-green-color;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+}
+
+/* BOX SHADOW BTNS */
+
+.gradient-btns {
+    width: 230px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+}
+
+.gradient-btns button {
+    width: 110px;
+}
+
+/* BOX SHADOW INPUT GROUP */
+
+.gradient-input-group {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    width: 50vw;
+    margin-right: 20px;
+}
+
+.gradient-input {
+    width: 180px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.gradient-input label, .gradient-input input {
+    width: 250px;
+}
+
+.form-switch {
+    padding: 0;
+}
+
+.form-switch .form-check-input {
+    margin-left: 6px;
+    width: 40px;
+    height: 22px;
+}
+
+.form-switch .form-check-input:hover {
+    cursor: pointer;
+}
+
+.gradient-input-group-1 input[type=color], .gradient-input-group-1 input[type=number] {
+    width: 80px;
+}
+
+.gradient-input input[type=range] {
+    width: 100px;
+    background-color: $brown-color;
+    border-color: internal #5f584c !important;
+}
+
+.gradient-input input[type=range i] {
+    color: $brown-color;
+}
+
+.color-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
