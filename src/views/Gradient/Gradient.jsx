@@ -7,7 +7,7 @@ const cssDefaultValues = {
     degrees: 90,
     colors: [
         { color: '#BFFFBC', opacity: 1, stop: 0},
-        { color: '#b08528', opacity: 0.7, stop: 50},
+        { color: '#749DFB', opacity: 0.7, stop: 50},
         { color: '#b04a94', opacity: 0.4, stop: 100}
     ]
 }
@@ -15,7 +15,20 @@ const cssDefaultValues = {
 const Gradient = () => {
     const [cssRules, setCssRules] = useState(cssDefaultValues);
 
-    const updateCssRules = (propr, value) => {
+    const updateCssRules = (propr, value, index) => {
+        if(propr === 'color' || propr === 'opacity' || propr === 'stop') {
+            const colors = cssRules.colors;
+            console.log(colors[index], propr, index, value, colors[index][propr])
+            colors[index][propr] = value;
+
+            console.log(colors[index], propr, index, value, colors[index][propr])
+
+            setCssRules({
+                ...cssRules,
+                colors: colors
+            })
+        }
+
         setCssRules({
             ...cssRules,
             [propr]: value
@@ -55,6 +68,19 @@ const Gradient = () => {
         })
     }
 
+    const removeColor = (ind) => {
+        const colors = cssRules.colors;
+        const colorsFiltered = colors.filter((color, index) => index !== ind );
+
+        if (colorsFiltered.length > 0) {
+            setCssRules({
+                ...cssRules,
+                colors: colorsFiltered
+            })
+        }
+
+    }
+
     return (
         <div className='container gradient-page'>
             <div className='gradient-result'>
@@ -92,16 +118,19 @@ const Gradient = () => {
                             return(
                                 <div className="color-div" key={index}>
                                     <div className='gradient-input'>
-                                        <label htmlFor="color">Color</label>
-                                        <input type="color" id="color" value={color.color} />
+                                        <button className="btn btn-danger btn-delete" onClick={() => removeColor(index)}><i className="fa fa-trash" aria-hidden="true"></i></button>
+                                    </div>
+                                    <div className='gradient-input'>
+                                        <label htmlFor="color">Color {index + 1}</label>
+                                        <input type="color" id="color" value={color.color} onChange={(e) => updateCssRules('color', e.target.value, index)} />
                                     </div>
                                     <div className='gradient-input'>
                                         <label htmlFor="color-opacity">Opacity</label>
-                                        <input type="range" min="0" max="1" step="0.01" id="color-opacity" value={color.opacity} />
+                                        <input type="range" min="0" max="1" step="0.01" id="color-opacity" value={color.opacity} onChange={(e) => updateCssRules('opacity', e.target.value, index)} />
                                     </div>
                                     <div className='gradient-input'>
                                         <label htmlFor="color-stp">Stop</label>
-                                        <input type="number" min="0" max="100" id="color-stop" value={color.stop} />
+                                        <input type="number" min="0" max="100" id="color-stop" value={color.stop} onChange={(e) => updateCssRules('stop', e.target.value, index)} />
                                     </div>
                                 </div>
                             )
@@ -115,8 +144,8 @@ const Gradient = () => {
                     </div>
                     {
                         cssRules.type &&
-                        <div className='gradient-input'>
-                            <label htmlFor="degrees">Degrees</label>
+                        <div className='gradient-input degrees-div'>
+                            <label htmlFor="degrees">Degrees º</label>
                             <input type="number" min="0" max="360" id="degrees" value={cssRules.degrees} onChange={(e) => updateCssRules('degrees', e.target.value)} />
                         </div>
                     }
