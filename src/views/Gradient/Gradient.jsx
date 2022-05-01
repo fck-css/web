@@ -3,8 +3,8 @@ import { useAuthContext } from "../../contexts/AuthContext/AuthContext";
 import './Gradient.scss';
 
 const cssDefaultValues = {
-    type: false,
-    degrees: 35,
+    type: true,
+    degrees: 90,
     colors: [
         { color: '#BFFFBC', opacity: 1, stop: 0},
         { color: '#b08528', opacity: 0.7, stop: 50},
@@ -36,12 +36,24 @@ const Gradient = () => {
         }
     }
 
-    const gradient = `${!cssRules.type ? 'linear-gradient' : 'radial-gradient'}(${cssRules.degrees}deg, ${cssRules.colors.map(el => ` ${hexToRgbA(el.color)}, ${el.opacity}) ${el.stop}%`)})`;
+    const gradient = `${cssRules.type ? 'linear-gradient' : 'radial-gradient'}(${ cssRules.type ? `${cssRules.degrees}deg` : 'circle' }, ${cssRules.colors.map(el => ` ${hexToRgbA(el.color)}, ${el.opacity}) ${el.stop}%`)})`;
 
     const copyText = () => {
         navigator.clipboard.writeText(`background: ${gradient}`);
         createToast("Copied to clipboard", "success");
     };
+
+    const addColor = () => {
+        const color = { color: '#BFFFBC', opacity: 1, stop: 0};
+
+        const colors = cssRules.colors;
+        colors.push(color);
+
+        setCssRules({
+            ...cssRules,
+            colors: colors
+        })
+    }
 
     return (
         <div className='container gradient-page'>
@@ -53,7 +65,6 @@ const Gradient = () => {
                     >
                     </div>
                 </div>
-
 
                 <div className='gradient-css-rules-div'>
                     <div className='gradient-css-rules'>
@@ -72,31 +83,43 @@ const Gradient = () => {
 
             <div className='gradient-input-group'>
                 <div className='gradient-input-group-1'>
-                    <h4>Colors</h4>
-                    <div className="color-div">
-                        <div className='gradient-input'>
-                            <label htmlFor="color">Color</label>
-                            <input type="color" id="color" value={cssRules.colors[0].color} onChange={(e) => updateCssRules('horizontalShadowLength', e.target.value)} />
-                        </div>
-                        <div className='box-shadow-input'>
-                            <label htmlFor="color-opacity">Opacity</label>
-                            <input type="range" min="0" max="1" step="0.01" id="color-opacity" value={cssRules.colors[0].opacity} onChange={(e) => updateCssRules('opacity', e.target.value)} />
-                        </div>
-                        <div className='box-shadow-input'>
-                            <label htmlFor="color-stp">Stop</label>
-                            <input type="number" min="0" max="100" id="color-stop" value={cssRules.colors[0].stop} onChange={(e) => updateCssRules('opacity', e.target.value)} />
-                        </div>
+                    <div>
+                        <h4>Colors</h4>
+                        <button className="btn btn-dark add-color-btn" onClick={() => addColor()}>+</button>
                     </div>
+                    {
+                        cssRules.colors.map((color, index) => {
+                            return(
+                                <div className="color-div" key={index}>
+                                    <div className='gradient-input'>
+                                        <label htmlFor="color">Color</label>
+                                        <input type="color" id="color" value={color.color} />
+                                    </div>
+                                    <div className='gradient-input'>
+                                        <label htmlFor="color-opacity">Opacity</label>
+                                        <input type="range" min="0" max="1" step="0.01" id="color-opacity" value={color.opacity} />
+                                    </div>
+                                    <div className='gradient-input'>
+                                        <label htmlFor="color-stp">Stop</label>
+                                        <input type="number" min="0" max="100" id="color-stop" value={color.stop} />
+                                    </div>
+                                </div>
+                            )
+                        })
+                    }
                 </div>
                 <div className='gradient-input-group-2'>
-                    <div className='box-shadow-input form-check form-switch'>
-                        <label htmlFor="type">linear | radial</label>
-                        <input className="form-check-input" type="checkbox" role="switch" id="type" onChange={(e) => updateCssRules('inset', !cssRules.type)} />
-                    </div>
                     <div className='gradient-input'>
-                        <label htmlFor="degrees">Degrees</label>
-                        <input type="range" min="-100" max="100" id="degrees"  onChange={(e) => updateCssRules('verticalShadowLength', e.target.value)} />
+                        <button className={`btn btn-linear ${cssRules.type ? 'btn-dark' : 'btn-light' }`} onClick={() => updateCssRules('type', true)}>Linear</button>
+                        <button className={`btn btn-radial ${!cssRules.type ? 'btn-dark' : 'btn-light' }`} onClick={() => updateCssRules('type', false)}>Radial</button>
                     </div>
+                    {
+                        cssRules.type &&
+                        <div className='gradient-input'>
+                            <label htmlFor="degrees">Degrees</label>
+                            <input type="number" min="0" max="360" id="degrees" value={cssRules.degrees} onChange={(e) => updateCssRules('degrees', e.target.value)} />
+                        </div>
+                    }
                 </div>
             </div>
         </div>

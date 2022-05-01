@@ -36,7 +36,7 @@
 .gradient-css-rules {
     padding: 20px;
     width: 500px;
-    height: 100px;
+    height: 180px;
     background-color: #E3E7FB;
     margin: 20px auto 0 auto;
     text-align: start;
@@ -76,6 +76,7 @@
     justify-content: space-between;
     align-items: center;
     height: 80px;
+    margin-top: 10px;
 }
 
 .gradient-btns button {
@@ -101,22 +102,43 @@
     margin-bottom: 20px;
 }
 
+.gradient-input-group-1 {
+    border-right: 0.25px solid grey;
+}
+
+.gradient-input-group-1 > div:first-child {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+h4 {
+    margin-bottom: 0;
+    margin-right: 10px;
+}
+
+.gradient-input-group-2 > div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-linear {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.btn-radial {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    margin-left: 4px;
+}
+
 .gradient-input label, .gradient-input input {
     width: 250px;
-}
-
-.form-switch {
-    padding: 0;
-}
-
-.form-switch .form-check-input {
-    margin-left: 6px;
-    width: 40px;
-    height: 22px;
-}
-
-.form-switch .form-check-input:hover {
-    cursor: pointer;
 }
 
 .gradient-input-group-1 input[type=color], .gradient-input-group-1 input[type=number] {
@@ -136,5 +158,13 @@
 .color-div {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
+}
+
+.add-color-btn {
+    width: 28px;
+    height: 28px;
+    line-height: normal;
+    padding: 0;
+    font-weight: bolder;
 }
