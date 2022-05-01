@@ -24,6 +24,7 @@ const Navbar = () => {
                       <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                         <Link to="/box-shadow">Box-Shadow Generator</Link>
                         <Link to="/flexbox">Flexbox Helper</Link>
+                        <Link to="/gradient">Gradient Generator</Link>
                       </div>
                     </li>
                     {!user ?

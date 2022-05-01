@@ -3,10 +3,9 @@
 .box-shadow-page {
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
     margin-bottom: 160px;
-    margin-right: 7%;
 }
 
 /* BOX SHADOW RESULTS */
@@ -15,8 +14,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0 auto 85px 60px;
-    width: 75vw;
+    margin: 0 0 85px 0;
+    width: 65vw;
 }
 
 .box-shadow-css-rules-div {
