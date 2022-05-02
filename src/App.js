@@ -14,6 +14,7 @@ import UnprotectedRoute from './guard/UnprotectedRoute';
 import Flexbox from './views/Flexbox/Flexbox';
 import BoxShadow from './views/BoxShadow/BoxShadow';
 import Grid from './views/Grid/Grid';
+import Gradient from './views/Gradient/Gradient';
 
 function App() {
   const { isAuthenticationFetched, toast } = useAuthContext()
@@ -33,6 +34,8 @@ function App() {
                 <Route path="/" element={<Home />}/>
                 <Route path="/register" element={<Register />}/>
                 <Route path="/login" element={<Login />} />
+                <Route path="/box-shadow" element={<BoxShadow />} />
+                <Route path="/gradient" element={<Gradient />} />
               </Route>
 
               <Route path="/box-shadow" element={<BoxShadow />} />
