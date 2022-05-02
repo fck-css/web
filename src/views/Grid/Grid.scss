@@ -1,0 +1,63 @@
+@import '../../variables';
+
+.Grid {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 5%;
+}
+
+.column-grid {
+    display: grid;
+}
+
+.grid-parent {
+    height: 550px;
+    width: 800px;
+    background-color: $light-gray;
+    margin-right: 30px;
+    border-radius: 10px;
+}
+
+.grid-child {
+    background-color: $light-green-color;
+    border: 0.5px solid;
+}
+
+.output {
+    padding: 20px;
+    width: 350px;
+    height: fit-content;
+    background-color: $light-blue;
+    text-align: start;
+    border-radius: 10px;
+}
+
+.code-text {
+    margin-left: 20px;
+}
+
+.attributes-output-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.grid-attributes-div {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 50px;
+    padding: 0 40px;
+}
+
+.grid-attribute {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.h2-grid-attribute {
+    font-size: 20px;
+    margin: 0;
+}
