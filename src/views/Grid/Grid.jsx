@@ -32,6 +32,10 @@ const Grid = () => {
         })
     }
 
+    const handleFr = (event) => {
+        console.log('hi')
+    }
+
     useEffect(() => {
         setOutput({
             "display": "grid",
@@ -42,27 +46,61 @@ const Grid = () => {
         })
     }, [rules])
 
-
-
     const copyText = () => {
         const text = Array.from(document.getElementsByClassName("line-code")).map(p => p.innerHTML).join("\r\n")
         navigator.clipboard.writeText(text)
         createToast("Copied to clipboard", "success")
     }
 
-
-
     return (
         <div className="Grid">
+                
+                <section>
+                    <div className="column-fr" style={{gridTemplateColumns: output["grid-template-columns"]}}>
+                        {Array.from(Array(rules.gridTemplateColumns * 1).keys()).map(key => {
+                            return (
+                                <div>
+                                    <input 
+                                        key={key} 
+                                        className="column-fr-child" 
+                                        type="number" 
+                                        max={10} 
+                                        min={1}
+                                        name="column-fr"
+                                        onChange={(event) => handleFr(event)}
+                                        />
+                                    <label>fr</label>
+                                </div>
+                            )
+                        })}
+                    </div>
 
-            <div className="parent-output-div">
-                <section className="column-fr">
+                    <div className="d-flex">
+                    <div className="row-fr" style={{gridTemplateRows: output["grid-template-rows"]}}>
+                        {Array.from(Array(rules.gridTemplateRows * 1).keys()).map(key => {
+                            return (
+                                <div>
+                                    <input 
+                                        key={key} 
+                                        className="row-fr-child" 
+                                        type="number" 
+                                        max={10} 
+                                        min={1}
+                                        name="row-fr"
+                                        
+                                        onChange={(event) => handleFr(event)}
+                                        />
+                                    <label>fr</label>
+                                </div>
+                            )
+                        })}
+                    </div>
+                        <div className="grid-parent" style={output}>
+                            {Array.from(Array(rules.gridTemplateColumns * rules.gridTemplateRows).keys()).map(key => <div key={key} className="grid-child" />)}
+                        </div>
+                    </div>
 
                 </section>
-                
-                <div className="grid-parent" style={output}>
-                        {Array.from(Array(rules.gridTemplateColumns * rules.gridTemplateRows).keys()).map(key => <div key={key} className="grid-child" />)}
-                </div>
                 
                 <div className="attributes-output-div">
                     <div className="grid-attributes-div">
@@ -128,8 +166,6 @@ const Grid = () => {
                             <p> {`}`}</p>                        
                         </div>
 
-                        
-
                         <div className="flexbox-buttons">
                             <button className='btn btn-dark' onClick={copyText}>Copy Rules</button>
                             <button className='btn btn-dark'>Save Code</button>
@@ -137,7 +173,6 @@ const Grid = () => {
                     </div>
 
                 </div>
-            </div>
 
         </div>
     )

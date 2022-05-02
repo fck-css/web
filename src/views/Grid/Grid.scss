@@ -4,12 +4,27 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-direction: column;
     padding: 0 5%;
 }
 
-.column-grid {
+.column-fr {
     display: grid;
+    width: 800px;
+    justify-content: center;
+    margin-left: 50px;
+}
+
+.column-fr-child, .row-fr-child {
+    border: 1px solid;
+    height: 30px;
+    width: 40px;
+}
+
+.row-fr {
+    display: grid;
+    height: 550px;
+    align-items: center;
+    margin-right: 10px;
 }
 
 .grid-parent {
