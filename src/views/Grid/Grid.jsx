@@ -18,33 +18,61 @@ const initialOutput = {
     "grid-row-gap": "0px",
 }
 
+const initialFrs = {
+    0: '1fr',
+    1: '1fr',
+    2: '1fr',
+    3: '1fr',
+    4: '1fr',
+}
+
+
 const Grid = () => {
     const [rules, setRules] = useState(initialRules)
     const [output, setOutput] = useState(initialOutput)
-
+    const [columnFr, setColumnFr] = useState(initialFrs)
+    
     const { createToast } = useAuthContext()
-
+    
     const handleChange = (event) => {
         const { name, value } = event.target
+
         setRules({
             ...rules,
             [name]: value
         })
+
+        setColumnFr(() => {  
+            if (name === "gridTemplateColumns") {
+            for (let i = value; i > 0; i--) {
+                columnFr[i - 1] = '1fr'
+                }
+                
+                return columnFr
+            } else {
+                return columnFr
+            }
+        })
     }
 
     const handleFr = (event) => {
-        console.log('hi')
+        const { name, value } = event.target
+
+        setColumnFr({
+            ...columnFr,
+            [name]: value
+        })
     }
 
     useEffect(() => {
         setOutput({
             "display": "grid",
-            "grid-template-columns": `repeat(${rules.gridTemplateColumns}, 1fr)`,
+            "grid-template-columns": Object.values(columnFr).join(" "),
             "grid-template-rows": `repeat(${rules.gridTemplateRows}, 1fr)`,
             "grid-column-gap": `${rules.gridColumnGap}px`,
             "grid-row-gap": `${rules.gridRowGap}px`,  
         })
-    }, [rules])
+    }, [rules, columnFr])
 
     const copyText = () => {
         const text = Array.from(document.getElementsByClassName("line-code")).map(p => p.innerHTML).join("\r\n")
@@ -59,18 +87,16 @@ const Grid = () => {
                     <div className="column-fr" style={{gridTemplateColumns: output["grid-template-columns"]}}>
                         {Array.from(Array(rules.gridTemplateColumns * 1).keys()).map(key => {
                             return (
-                                <div>
-                                    <input 
-                                        key={key} 
-                                        className="column-fr-child" 
-                                        type="number" 
-                                        max={10} 
-                                        min={1}
-                                        name="column-fr"
-                                        onChange={(event) => handleFr(event)}
-                                        />
-                                    <label>fr</label>
-                                </div>
+                                <input 
+                                    key={key}
+                                    className="column-fr-child" 
+                                    // type="number" 
+                                    // max={10} 
+                                    // min={1}
+                                    name={key}
+                                    value={columnFr[key]}
+                                    onChange={(event) => handleFr(event)}
+                                />
                             )
                         })}
                     </div>
@@ -87,7 +113,6 @@ const Grid = () => {
                                         max={10} 
                                         min={1}
                                         name="row-fr"
-                                        
                                         onChange={(event) => handleFr(event)}
                                         />
                                     <label>fr</label>
@@ -135,7 +160,7 @@ const Grid = () => {
                                 name="gridColumnGap"
                                 type="number"
                                 max={100}
-                                min={1}
+                                min={0}
                                 value={rules.gridColumnGap}
                             />
                         </div>
@@ -147,7 +172,7 @@ const Grid = () => {
                                 name="gridRowGap"
                                 type="number"
                                 max={100}
-                                min={1}
+                                min={0}
                                 value={rules.gridRowGap}
                             />
                         </div>           
