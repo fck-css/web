@@ -25,6 +25,7 @@ const Navbar = () => {
                         <Link to="/box-shadow">Box-Shadow Generator</Link>
                         <Link to="/flexbox">Flexbox Helper</Link>
                         <Link to="/gradient">Gradient Generator</Link>
+                        <Link to="/grid">Grid Generator</Link>
                       </div>
                     </li>
                     {!user ?
