@@ -64,6 +64,11 @@ const Grid = () => {
         })
     }
 
+    // const resultColumns = Array(columnFr)
+    // console.log(resultColumns)
+    
+    //Object.values(columnFr).join(" ")
+
     useEffect(() => {
         setOutput({
             "display": "grid",
