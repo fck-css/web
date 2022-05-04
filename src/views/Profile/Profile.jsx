@@ -12,6 +12,8 @@ const Profile = () => {
         doLogout();
     }
 
+    console.log(user);
+
     return(
         <div className="profile-page">
             { user &&
@@ -31,23 +33,14 @@ const Profile = () => {
                         </div>
                 </div>
 
-                <div className="snippet">
-                    
-                    <img src={buttonSample} alt="" className="sample-img" />
-                    <pre>{`
-button::after {
-border-radius: 4px;
-content: "";
-background-color: #f0e3d3;
-width: 100%;
-z-index: -1;
-position: absolute;
-height: 100%;
-top: 5px;
-left: 5px;}
-`}</pre>
-
-
+                <div className="snippets">
+                    { user.snippets.map((snippet, index) => {
+                        return (
+                            <div className="snippet-div" key={index}>
+                                {snippet.code}
+                            </div>
+                        )
+                    }) }
                 </div>
                 <hr />
             </>
