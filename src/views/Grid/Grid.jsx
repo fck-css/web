@@ -34,18 +34,13 @@ const initialFrs = {
 const Grid = () => {
     const [rules, setRules] = useState(initialRules)
     const [output, setOutput] = useState(initialOutput)
-<<<<<<< HEAD
     const [columnFr, setColumnFr] = useState(initialFrs)
     const [rowFr, setRowFr] = useState(initialFrs)
-    
-    const { createToast } = useAuthContext()
-    
-=======
+
     const navigate = useNavigate()
 
     const { createToast, user } = useAuthContext()
 
->>>>>>> 8ef9310d4b2c8b2fdba4cff680f8cf0f37aff410
     const handleChange = (event) => {
         const { name, value } = event.target
 
