@@ -22,30 +22,88 @@ const initialOutput = {
     "grid-row-gap": "0px",
 }
 
+const initialFrs = {
+    0: '1fr',
+    1: '1fr',
+    2: '1fr',
+    3: '1fr',
+    4: '1fr',
+}
+
+
 const Grid = () => {
     const [rules, setRules] = useState(initialRules)
     const [output, setOutput] = useState(initialOutput)
+    const [columnFr, setColumnFr] = useState(initialFrs)
+    const [rowFr, setRowFr] = useState(initialFrs)
+
     const navigate = useNavigate()
 
     const { createToast, user } = useAuthContext()
 
     const handleChange = (event) => {
         const { name, value } = event.target
+
         setRules({
             ...rules,
             [name]: value
         })
+
+        if (name === "gridTemplateColumns") {
+            setColumnFr(() => {  
+                let newColumnFr = {};
+                for (let i = value; i > 0; i--) {
+                    newColumnFr[i - 1] = '1fr'
+                }
+                return newColumnFr
+            })
+        } else if (name === "gridTemplateRows") {
+            setRowFr(() => {  
+                let newRowFr = {};
+                for (let i = value; i > 0; i--) {
+                    newRowFr[i - 1] = '1fr'
+                }
+                return newRowFr
+            })
+
+        }
+  
     }
+
+    const handleColumnFr = (event) => {
+        const { name, value } = event.target
+
+        setColumnFr({
+            ...columnFr,
+            [name]: value
+        })
+    }
+    
+    const handleRowFr = (event) => {
+        const { name, value } = event.target
+
+        setRowFr({
+            ...rowFr,
+            [name]: value
+        })
+    }
+
+    console.log("columns: " + output["grid-template-columns"])
+    console.log("rows: " + output["grid-template-rows"])
+    // const resultColumns = Array(columnFr)
+    // console.log(resultColumns)
+    
+    //Object.values(columnFr).join(" ")
 
     useEffect(() => {
         setOutput({
             "display": "grid",
-            "grid-template-columns": `repeat(${rules.gridTemplateColumns}, 1fr)`,
-            "grid-template-rows": `repeat(${rules.gridTemplateRows}, 1fr)`,
+            "grid-template-columns": Object.values(columnFr).join(" "),
+            "grid-template-rows": Object.values(rowFr).join(" "),
             "grid-column-gap": `${rules.gridColumnGap}px`,
             "grid-row-gap": `${rules.gridRowGap}px`,  
         })
-    }, [rules])
+    }, [rules, columnFr, rowFr])
 
 
     const text = Array.from(document.getElementsByClassName("line-code")).map(p => p.innerHTML).join("\r\n")
@@ -73,15 +131,50 @@ const Grid = () => {
 
     return (
         <div className="Grid">
+                
+                <section>
+                    <div className="column-fr" style={{gridTemplateColumns: output["grid-template-columns"]}}>
+                        {Array.from(Array(rules.gridTemplateColumns * 1).keys()).map(key => {
+                            return (
+                                <input 
+                                    key={key}
+                                    className="column-fr-child" 
+                                    // type="number" 
+                                    // max={10} 
+                                    // min={1}
+                                    name={key}
+                                    value={columnFr[key]}
+                                    onChange={(event) => handleColumnFr(event)}
+                                />
+                            )
+                        })}
+                    </div>
 
-            <div className="parent-output-div">
-                <section className="column-fr">
+                    <div className="d-flex">
+                    <div className="row-fr" style={{gridTemplateRows: output["grid-template-rows"]}}>
+                        {Array.from(Array(rules.gridTemplateRows * 1).keys()).map(key => {
+                            return (
+                                <div>
+                                    <input 
+                                        key={key} 
+                                        className="row-fr-child" 
+                                        // type="number" 
+                                        // max={10} 
+                                        // min={1}
+                                        name={key}
+                                        value={rowFr[key]}
+                                        onChange={(event) => handleRowFr(event)}
+                                        />
+                                </div>
+                            )
+                        })}
+                    </div>
+                        <div className="grid-parent" style={output}>
+                            {Array.from(Array(rules.gridTemplateColumns * rules.gridTemplateRows).keys()).map(key => <div key={key} className="grid-child" />)}
+                        </div>
+                    </div>
 
                 </section>
-                
-                <div className="grid-parent" style={output}>
-                        {Array.from(Array(rules.gridTemplateColumns * rules.gridTemplateRows).keys()).map(key => <div key={key} className="grid-child" />)}
-                </div>
                 
                 <div className="attributes-output-div">
                     <div className="grid-attributes-div">
@@ -116,7 +209,7 @@ const Grid = () => {
                                 name="gridColumnGap"
                                 type="number"
                                 max={100}
-                                min={1}
+                                min={0}
                                 value={rules.gridColumnGap}
                             />
                         </div>
@@ -128,7 +221,7 @@ const Grid = () => {
                                 name="gridRowGap"
                                 type="number"
                                 max={100}
-                                min={1}
+                                min={0}
                                 value={rules.gridRowGap}
                             />
                         </div>           
@@ -147,8 +240,6 @@ const Grid = () => {
                             <p> {`}`}</p>                        
                         </div>
 
-                        
-
                         <div className="flexbox-buttons">
                             <button className='btn btn-dark' onClick={copyText}>Copy Rules</button>
                             <button className='btn btn-dark' onClick={saveCode}>Save Code</button>
@@ -156,7 +247,6 @@ const Grid = () => {
                     </div>
 
                 </div>
-            </div>
 
         </div>
     )

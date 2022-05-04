@@ -1,8 +1,7 @@
 import './App.scss';
-import react, { useState } from 'react';
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, Navigate } from 'react-router-dom';
 import Register from './views/Register/Register';
 import Home from './views/Home/Home';
 import Login from './views/Login/Login';
