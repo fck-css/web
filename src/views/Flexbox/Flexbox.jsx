@@ -55,16 +55,17 @@ const Flexbox = () => {
                     {Array.from(Array(childCount).keys()).map(child => <FlexboxChild number={child} />)}
                 </div>
                 <div>
-            <div className="child-count-div">
-                <h2 className="child-count-title">Child count:</h2>
-                <input
-                onChange={(event) => setChildCount(Number(event.target.value))}
-                type="number"
-                max={8}
-                min={1}
-                value={childCount}
-                />
-            </div>
+                    <div className="child-count-div">
+                        <h2 className="child-count-title">Child count:</h2>
+                        <input
+                        onChange={(event) => setChildCount(Number(event.target.value))}
+                        type="number"
+                        max={8}
+                        min={1}
+                        value={childCount}
+                        />
+                    </div>
+                    
                     <div className="output">
                         <p> {`{`}</p>
                         <div className="code-text">
