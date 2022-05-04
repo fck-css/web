@@ -1,8 +1,7 @@
 import './App.scss';
-import react, { useState } from 'react';
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, Navigate } from 'react-router-dom';
 import Register from './views/Register/Register';
 import Home from './views/Home/Home';
 import Login from './views/Login/Login';
@@ -15,6 +14,7 @@ import Flexbox from './views/Flexbox/Flexbox';
 import BoxShadow from './views/BoxShadow/BoxShadow';
 import Grid from './views/Grid/Grid';
 import Gradient from './views/Gradient/Gradient';
+import NotFound from './components/NotFound/NotFound';
 
 function App() {
   const { isAuthenticationFetched, toast } = useAuthContext()
@@ -41,6 +41,9 @@ function App() {
               <Route path="/box-shadow" element={<BoxShadow />} />
               <Route path="/flexbox" element={<Flexbox />} />
               <Route path="/grid" element={<Grid />} />
+              <Route path="/not-found" element={<NotFound />} />
+              <Route path="*" element={<NotFound />}
+    />
 
               <Route element={<ProtectedRoute />}>
                 <Route path="/profile" element={<Profile />} />
