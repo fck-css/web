@@ -230,7 +230,7 @@ const Grid = () => {
                         <div className="output">
                             <p>{`{`}</p>
                             <div className="code-text">
-                                <p className="line-code">{`display: flex;`}</p>
+                                <p className="line-code">{`display: grid;`}</p>
                                 <p className="line-code">{`grid-template-columns: ${output['grid-template-columns']};`}</p>
                                 <p className="line-code">{`grid-template-rows: ${output['grid-template-rows']};`}</p>
                                 <p className="line-code">{`grid-column-gap: ${output['grid-column-gap']};`}</p>

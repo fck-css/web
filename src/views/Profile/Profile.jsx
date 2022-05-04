@@ -12,8 +12,6 @@ const Profile = () => {
         doLogout();
     }
 
-    console.log(user);
-
     return(
         <div className="profile-page">
             { user &&
@@ -32,12 +30,35 @@ const Profile = () => {
                             </div>
                         </div>
                 </div>
-
                 <div className="snippets">
                     { user.snippets.map((snippet, index) => {
                         return (
                             <div className="snippet-div" key={index}>
-                                {snippet.code}
+                                <div className="snippet-result">
+                                    { 
+                                        snippet.toolType === 'boxShadow' && 
+                                        <div 
+                                            className='box-shadow-profile'
+                                            style={{ 
+                                                boxShadow: snippet.code
+                                            }}
+                                        >
+                                        </div>
+                                    }
+                                    { 
+                                        snippet.toolType === 'gradient' && 
+                                        <div 
+                                            className='gradient-profile'
+                                            style={{ 
+                                                background: snippet.code
+                                            }}
+                                        >
+                                        </div>
+                                    }
+                                </div>
+                                <div className="snippet-code">
+                                    {snippet.code}
+                                </div>
                             </div>
                         )
                     }) }
