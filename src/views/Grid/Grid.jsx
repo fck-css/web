@@ -31,6 +31,7 @@ const Grid = () => {
     const [rules, setRules] = useState(initialRules)
     const [output, setOutput] = useState(initialOutput)
     const [columnFr, setColumnFr] = useState(initialFrs)
+    const [rowFr, setRowFr] = useState(initialFrs)
     
     const { createToast } = useAuthContext()
     
@@ -42,20 +43,28 @@ const Grid = () => {
             [name]: value
         })
 
-        setColumnFr(() => {  
-            if (name === "gridTemplateColumns") {
-            for (let i = value; i > 0; i--) {
-                columnFr[i - 1] = '1fr'
+        if (name === "gridTemplateColumns") {
+            setColumnFr(() => {  
+                let newColumnFr = {};
+                for (let i = value; i > 0; i--) {
+                    newColumnFr[i - 1] = '1fr'
                 }
-                
-                return columnFr
-            } else {
-                return columnFr
-            }
-        })
+                return newColumnFr
+            })
+        } else if (name === "gridTemplateRows") {
+            setRowFr(() => {  
+                let newRowFr = {};
+                for (let i = value; i > 0; i--) {
+                    newRowFr[i - 1] = '1fr'
+                }
+                return newRowFr
+            })
+
+        }
+  
     }
 
-    const handleFr = (event) => {
+    const handleColumnFr = (event) => {
         const { name, value } = event.target
 
         setColumnFr({
@@ -63,7 +72,18 @@ const Grid = () => {
             [name]: value
         })
     }
+    
+    const handleRowFr = (event) => {
+        const { name, value } = event.target
 
+        setRowFr({
+            ...rowFr,
+            [name]: value
+        })
+    }
+
+    console.log("columns: " + output["grid-template-columns"])
+    console.log("rows: " + output["grid-template-rows"])
     // const resultColumns = Array(columnFr)
     // console.log(resultColumns)
     
@@ -73,11 +93,11 @@ const Grid = () => {
         setOutput({
             "display": "grid",
             "grid-template-columns": Object.values(columnFr).join(" "),
-            "grid-template-rows": `repeat(${rules.gridTemplateRows}, 1fr)`,
+            "grid-template-rows": Object.values(rowFr).join(" "),
             "grid-column-gap": `${rules.gridColumnGap}px`,
             "grid-row-gap": `${rules.gridRowGap}px`,  
         })
-    }, [rules, columnFr])
+    }, [rules, columnFr, rowFr])
 
     const copyText = () => {
         const text = Array.from(document.getElementsByClassName("line-code")).map(p => p.innerHTML).join("\r\n")
@@ -100,7 +120,7 @@ const Grid = () => {
                                     // min={1}
                                     name={key}
                                     value={columnFr[key]}
-                                    onChange={(event) => handleFr(event)}
+                                    onChange={(event) => handleColumnFr(event)}
                                 />
                             )
                         })}
@@ -114,13 +134,13 @@ const Grid = () => {
                                     <input 
                                         key={key} 
                                         className="row-fr-child" 
-                                        type="number" 
-                                        max={10} 
-                                        min={1}
-                                        name="row-fr"
-                                        onChange={(event) => handleFr(event)}
+                                        // type="number" 
+                                        // max={10} 
+                                        // min={1}
+                                        name={key}
+                                        value={rowFr[key]}
+                                        onChange={(event) => handleRowFr(event)}
                                         />
-                                    <label>fr</label>
                                 </div>
                             )
                         })}

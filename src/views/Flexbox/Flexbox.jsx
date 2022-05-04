@@ -40,6 +40,7 @@ const Flexbox = () => {
 
             <div className="parent-output-div">
                 <div className="parent-div" style={output}>
+                    {console.log(output)}
                     {Array.from(Array(childCount).keys()).map(child => <FlexboxChild number={child} />)}
                 </div>
                 <div>
