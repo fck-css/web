@@ -1,4 +1,5 @@
 import react, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import FlexboxChild from '../../components/Flexbox/FlexboxChild/FlexboxChild';
 import { useAuthContext } from '../../contexts/AuthContext/AuthContext';
 import { saveSnippet } from "../../services/UserService";
@@ -18,6 +19,7 @@ const initialOutput = {
 const Flexbox = () => {
     const [childCount, setChildCount] = useState(4)
     const [output, setOutput] = useState(initialOutput)
+    const navigate = useNavigate()
 
     const { createToast, user } = useAuthContext()
 
@@ -29,20 +31,27 @@ const Flexbox = () => {
         })
     }
 
+    const text = Array.from(document.getElementsByClassName("line-code")).map(p => p.innerHTML).join("\r\n")
+
     const copyText = () => {
-        const text = Array.from(document.getElementsByClassName("line-code")).map(p => p.innerHTML).join("\r\n")
         navigator.clipboard.writeText(text)
         createToast("Copied to clipboard", "success")
     }
     
     const saveCode = () => {
-        const data = {
-            user: user._id,
-            toolType: typeOfSnippet,
-            code: output
-        };
-    
-        saveSnippet(data);
+        if(user){
+            const data = {
+                user: user._id,
+                toolType: typeOfSnippet,
+                code: text
+            };
+        
+            saveSnippet(data);
+            createToast("Snippet successfully saved.", "success");
+        } else {
+            navigate('/login');
+            createToast('You need to be logged in.', 'fail');
+        }
     };
 
     return (

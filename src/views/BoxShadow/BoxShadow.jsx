@@ -54,10 +54,11 @@ const BoxShadow = () => {
             const data = {
                 user: user._id,
                 toolType: typeOfSnippet,
-                code: boxShadow
+                code: `box-shadow: ${boxShadow}`
             };
-        
+            
             saveSnippet(data);
+            createToast("Snippet successfully saved.", "success");
         } else {
             navigate('/login');
             createToast('You need to be logged in.', 'fail');

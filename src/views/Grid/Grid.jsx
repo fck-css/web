@@ -1,6 +1,10 @@
 import react, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useAuthContext } from '../../contexts/AuthContext/AuthContext';
+import { saveSnippet } from "../../services/UserService";
 import './Grid.scss'
+
+const typeOfSnippet = 'grid'
 
 const initialRules = {
     display: "grid",
@@ -21,8 +25,9 @@ const initialOutput = {
 const Grid = () => {
     const [rules, setRules] = useState(initialRules)
     const [output, setOutput] = useState(initialOutput)
+    const navigate = useNavigate()
 
-    const { createToast } = useAuthContext()
+    const { createToast, user } = useAuthContext()
 
     const handleChange = (event) => {
         const { name, value } = event.target
@@ -43,14 +48,28 @@ const Grid = () => {
     }, [rules])
 
 
+    const text = Array.from(document.getElementsByClassName("line-code")).map(p => p.innerHTML).join("\r\n")
 
     const copyText = () => {
-        const text = Array.from(document.getElementsByClassName("line-code")).map(p => p.innerHTML).join("\r\n")
         navigator.clipboard.writeText(text)
         createToast("Copied to clipboard", "success")
     }
 
-
+    const saveCode = () => {
+        if(user){
+            const data = {
+                user: user._id,
+                toolType: typeOfSnippet,
+                code: text
+            };
+        
+            saveSnippet(data);
+            createToast("Snippet successfully saved.", "success");
+        } else {
+            navigate('/login');
+            createToast('You need to be logged in.', 'fail');
+        }
+    };
 
     return (
         <div className="Grid">
@@ -132,7 +151,7 @@ const Grid = () => {
 
                         <div className="flexbox-buttons">
                             <button className='btn btn-dark' onClick={copyText}>Copy Rules</button>
-                            <button className='btn btn-dark'>Save Code</button>
+                            <button className='btn btn-dark' onClick={saveCode}>Save Code</button>
                         </div>
                     </div>
 
