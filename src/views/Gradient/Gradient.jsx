@@ -1,6 +1,9 @@
 import react, { useState } from "react";
 import { useAuthContext } from "../../contexts/AuthContext/AuthContext";
+import { saveSnippet } from "../../services/UserService";
 import './Gradient.scss';
+
+const typeOfSnippet = 'gradient';
 
 const cssDefaultValues = {
     type: true,
@@ -35,7 +38,7 @@ const Gradient = () => {
         })
     };
 
-    const { createToast } = useAuthContext();
+    const { createToast, user } = useAuthContext();
 
     function hexToRgbA(hex){
         var c;
@@ -81,6 +84,16 @@ const Gradient = () => {
 
     }
 
+    const saveCode = () => {
+        const data = {
+            user: user._id,
+            toolType: typeOfSnippet,
+            code: gradient
+        };
+    
+        saveSnippet(data);
+    };
+
     return (
         <div className='container gradient-page'>
             <div className='gradient-result'>
@@ -102,7 +115,7 @@ const Gradient = () => {
                     </div>
                     <div className="gradient-btns">
                         <button className='btn btn-dark' onClick={() => copyText()}>Copy Rules</button>
-                        <button className='btn btn-dark'>Save Code</button>
+                        <button className='btn btn-dark' onClick={() => saveCode()}>Save Code</button>
                     </div>
                 </div>
             </div>
