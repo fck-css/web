@@ -1,0 +1,16 @@
+.not-found-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 700px;
+}
+
+.not-found-buttons > button:first-child {
+    margin-right: 40px;
+}
+
+.not-found-img {
+    width: 50vw;
+    margin-top: 70px;
+}
