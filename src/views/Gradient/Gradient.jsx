@@ -1,6 +1,10 @@
 import react, { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import { useAuthContext } from "../../contexts/AuthContext/AuthContext";
+import { saveSnippet } from "../../services/UserService";
 import './Gradient.scss';
+
+const typeOfSnippet = 'gradient';
 
 const cssDefaultValues = {
     type: true,
@@ -14,6 +18,7 @@ const cssDefaultValues = {
 
 const Gradient = () => {
     const [cssRules, setCssRules] = useState(cssDefaultValues);
+    const navigate = useNavigate();
 
     const updateCssRules = (propr, value, index) => {
         if(propr === 'color' || propr === 'opacity' || propr === 'stop') {
@@ -35,7 +40,7 @@ const Gradient = () => {
         })
     };
 
-    const { createToast } = useAuthContext();
+    const { createToast, user } = useAuthContext();
 
     function hexToRgbA(hex){
         var c;
@@ -78,8 +83,23 @@ const Gradient = () => {
                 colors: colorsFiltered
             })
         }
-
     }
+
+    const saveCode = () => {
+        if(user){
+            const data = {
+                user: user._id,
+                toolType: typeOfSnippet,
+                code: gradient
+            };
+        
+            saveSnippet(data);
+            createToast("Snippet successfully saved.", "success");
+        } else {
+            navigate('/login');
+            createToast('You need to be logged in.', 'fail');
+        }
+    };
 
     return (
         <div className='container gradient-page'>
@@ -102,7 +122,7 @@ const Gradient = () => {
                     </div>
                     <div className="gradient-btns">
                         <button className='btn btn-dark' onClick={() => copyText()}>Copy Rules</button>
-                        <button className='btn btn-dark'>Save Code</button>
+                        <button className='btn btn-dark' onClick={() => saveCode()}>Save Code</button>
                     </div>
                 </div>
             </div>

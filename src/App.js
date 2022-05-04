@@ -41,9 +41,7 @@ function App() {
               <Route path="/box-shadow" element={<BoxShadow />} />
               <Route path="/flexbox" element={<Flexbox />} />
               <Route path="/grid" element={<Grid />} />
-              <Route path="/not-found" element={<NotFound />} />
-              <Route path="*" element={<NotFound />}
-    />
+              <Route path="*" element={<NotFound />} />
 
               <Route element={<ProtectedRoute />}>
                 <Route path="/profile" element={<Profile />} />

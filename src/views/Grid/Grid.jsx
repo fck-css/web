@@ -1,6 +1,10 @@
 import react, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useAuthContext } from '../../contexts/AuthContext/AuthContext';
+import { saveSnippet } from "../../services/UserService";
 import './Grid.scss'
+
+const typeOfSnippet = 'grid'
 
 const initialRules = {
     display: "grid",
@@ -30,11 +34,18 @@ const initialFrs = {
 const Grid = () => {
     const [rules, setRules] = useState(initialRules)
     const [output, setOutput] = useState(initialOutput)
+<<<<<<< HEAD
     const [columnFr, setColumnFr] = useState(initialFrs)
     const [rowFr, setRowFr] = useState(initialFrs)
     
     const { createToast } = useAuthContext()
     
+=======
+    const navigate = useNavigate()
+
+    const { createToast, user } = useAuthContext()
+
+>>>>>>> 8ef9310d4b2c8b2fdba4cff680f8cf0f37aff410
     const handleChange = (event) => {
         const { name, value } = event.target
 
@@ -99,11 +110,29 @@ const Grid = () => {
         })
     }, [rules, columnFr, rowFr])
 
+
+    const text = Array.from(document.getElementsByClassName("line-code")).map(p => p.innerHTML).join("\r\n")
+
     const copyText = () => {
-        const text = Array.from(document.getElementsByClassName("line-code")).map(p => p.innerHTML).join("\r\n")
         navigator.clipboard.writeText(text)
         createToast("Copied to clipboard", "success")
     }
+
+    const saveCode = () => {
+        if(user){
+            const data = {
+                user: user._id,
+                toolType: typeOfSnippet,
+                code: text
+            };
+        
+            saveSnippet(data);
+            createToast("Snippet successfully saved.", "success");
+        } else {
+            navigate('/login');
+            createToast('You need to be logged in.', 'fail');
+        }
+    };
 
     return (
         <div className="Grid">
@@ -218,7 +247,7 @@ const Grid = () => {
 
                         <div className="flexbox-buttons">
                             <button className='btn btn-dark' onClick={copyText}>Copy Rules</button>
-                            <button className='btn btn-dark'>Save Code</button>
+                            <button className='btn btn-dark' onClick={saveCode}>Save Code</button>
                         </div>
                     </div>
 
