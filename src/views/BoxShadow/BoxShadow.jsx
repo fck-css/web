@@ -1,6 +1,10 @@
-import react, { useState, useEffect } from 'react';
+import react, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useAuthContext } from '../../contexts/AuthContext/AuthContext';
+import { saveSnippet } from "../../services/UserService";
 import './BoxShadow.scss';
+
+const typeOfSnippet = 'boxShadow';
 
 const cssDefaultValues = {
     horizontalShadowLength: 10,
@@ -15,6 +19,7 @@ const cssDefaultValues = {
 
 const BoxShadow = () => {
     const [cssRules, setCssRules] = useState(cssDefaultValues);
+    const navigate = useNavigate();
 
     const updateCssRules = (propr, value) => {
         setCssRules({
@@ -23,7 +28,7 @@ const BoxShadow = () => {
         })
     };
 
-    const { createToast } = useAuthContext();
+    const { createToast, user } = useAuthContext();
 
     function hexToRgbA(hex){
         var c;
@@ -42,6 +47,21 @@ const BoxShadow = () => {
     const copyText = () => {
         navigator.clipboard.writeText(`box-shadow: ${boxShadow}`);
         createToast("Copied to clipboard", "success");
+    };
+
+    const saveCode = () => {
+        if(user){
+            const data = {
+                user: user._id,
+                toolType: typeOfSnippet,
+                code: boxShadow
+            };
+        
+            saveSnippet(data);
+        } else {
+            navigate('/login');
+            createToast('You need to be logged in.', 'fail');
+        }
     };
 
     return (
@@ -69,7 +89,7 @@ const BoxShadow = () => {
                     </div>
                     <div className="box-shadow-btns">
                         <button className='btn btn-dark' onClick={() => copyText()}>Copy Rules</button>
-                        <button className='btn btn-dark'>Save Code</button>
+                        <button className='btn btn-dark' onClick={() => saveCode()}>Save Code</button>
                     </div>
                 </div>
             </div>

@@ -1,7 +1,10 @@
 import react, { useState } from 'react';
 import FlexboxChild from '../../components/Flexbox/FlexboxChild/FlexboxChild';
 import { useAuthContext } from '../../contexts/AuthContext/AuthContext';
-import './Flexbox.scss'
+import { saveSnippet } from "../../services/UserService";
+import './Flexbox.scss';
+
+const typeOfSnippet = 'flexbox';
 
 const initialOutput = {
     "display": "flex",
@@ -16,7 +19,7 @@ const Flexbox = () => {
     const [childCount, setChildCount] = useState(4)
     const [output, setOutput] = useState(initialOutput)
 
-    const { createToast } = useAuthContext()
+    const { createToast, user } = useAuthContext()
 
     const handleChange = (event) => {
         const { name, value } = event.target
@@ -32,6 +35,15 @@ const Flexbox = () => {
         createToast("Copied to clipboard", "success")
     }
     
+    const saveCode = () => {
+        const data = {
+            user: user._id,
+            toolType: typeOfSnippet,
+            code: output
+        };
+    
+        saveSnippet(data);
+    };
 
     return (
         <div className="Flexbox">
@@ -72,7 +84,7 @@ const Flexbox = () => {
 
                     <div className="flexbox-buttons">
                         <button className='btn btn-dark' onClick={copyText}>Copy Rules</button>
-                        <button className='btn btn-dark'>Save Code</button>
+                        <button className='btn btn-dark' onClick={saveCode}>Save Code</button>
                     </div>
                 </div>
             </div>

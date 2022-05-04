@@ -33,10 +33,10 @@ function App() {
                 <Route path="/" element={<Home />}/>
                 <Route path="/register" element={<Register />}/>
                 <Route path="/login" element={<Login />} />
-                <Route path="/box-shadow" element={<BoxShadow />} />
-                <Route path="/gradient" element={<Gradient />} />
               </Route>
 
+              <Route path="/box-shadow" element={<BoxShadow />} />
+              <Route path="/gradient" element={<Gradient />} />
               <Route path="/flexbox" element={<Flexbox />} />
 
               <Route element={<ProtectedRoute />}>
