@@ -1,4 +1,5 @@
 import react, { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import { useAuthContext } from "../../contexts/AuthContext/AuthContext";
 import { saveSnippet } from "../../services/UserService";
 import './Gradient.scss';
@@ -17,6 +18,7 @@ const cssDefaultValues = {
 
 const Gradient = () => {
     const [cssRules, setCssRules] = useState(cssDefaultValues);
+    const navigate = useNavigate();
 
     const updateCssRules = (propr, value, index) => {
         if(propr === 'color' || propr === 'opacity' || propr === 'stop') {
@@ -81,17 +83,22 @@ const Gradient = () => {
                 colors: colorsFiltered
             })
         }
-
     }
 
     const saveCode = () => {
-        const data = {
-            user: user._id,
-            toolType: typeOfSnippet,
-            code: gradient
-        };
-    
-        saveSnippet(data);
+        if(user){
+            const data = {
+                user: user._id,
+                toolType: typeOfSnippet,
+                code: gradient
+            };
+        
+            saveSnippet(data);
+            createToast("Snippet successfully saved.", "success");
+        } else {
+            navigate('/login');
+            createToast('You need to be logged in.', 'fail');
+        }
     };
 
     return (
