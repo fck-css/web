@@ -15,6 +15,7 @@ import Flexbox from './views/Flexbox/Flexbox';
 import BoxShadow from './views/BoxShadow/BoxShadow';
 import Grid from './views/Grid/Grid';
 import Gradient from './views/Gradient/Gradient';
+import NotFound from './components/NotFound/NotFound';
 
 function App() {
   const { isAuthenticationFetched, toast } = useAuthContext()
@@ -41,6 +42,7 @@ function App() {
               <Route path="/box-shadow" element={<BoxShadow />} />
               <Route path="/flexbox" element={<Flexbox />} />
               <Route path="/grid" element={<Grid />} />
+              <Route path="*" element={<NotFound />} />
 
               <Route element={<ProtectedRoute />}>
                 <Route path="/profile" element={<Profile />} />
