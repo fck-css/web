@@ -1,15 +1,21 @@
-import react from "react";
+import react, { useState, useEffect } from "react";
 import { useAuthContext } from "../../contexts/AuthContext/AuthContext";
 import { logout as doLogout } from "../../store/accessTokenStore";
+import { deleteSnippet, getCurrentUser } from "../../services/UserService";
 import './Profile.scss';
 
-import buttonSample from '../../assets/button-sample.png'
+import buttonSample from '../../assets/button-sample.png';
 
 const Profile = () => {
-    const { user } = useAuthContext();
+    const { user, getUser } = useAuthContext();
 
     const logout = () => {
         doLogout();
+    }
+
+    const removeSnippet = (id) => {
+        deleteSnippet(id);
+        getUser();
     }
 
     return(
@@ -31,16 +37,23 @@ const Profile = () => {
                         </div>
                 </div>
                 <div className="snippets">
-                    { user.snippets.map((snippet, index) => {
+                    { user.snippets && user.snippets.map((snippet, index) => {
+                        let boxShadow = null;
+
+                        if(snippet.toolType === 'boxShadow') {
+                            boxShadow = snippet.code.split(':').pop();
+                        }
+
                         return (
                             <div className="snippet-div" key={index}>
+                                <button className="delete-snippet-btn" onClick={() => removeSnippet(snippet._id)}><i className="fa-solid fa-circle-xmark"></i></button>
                                 <div className="snippet-result">
                                     { 
                                         snippet.toolType === 'boxShadow' && 
                                         <div 
                                             className='box-shadow-profile'
                                             style={{ 
-                                                boxShadow: snippet.code
+                                                boxShadow: boxShadow
                                             }}
                                         >
                                         </div>
