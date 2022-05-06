@@ -11,6 +11,7 @@ const NotFound = () => {
 
     return (
         <div className="not-found-div">
+            <div>
             <h3>NOT FOUND</h3>
             
             <p>Sorry, the url {window.location.href} could not be found.</p>
@@ -21,6 +22,7 @@ const NotFound = () => {
             </div>
 
             <img className="not-found-img" src={notfound} alt="Not found" />
+            </div>
         </div>
     )
 }
