@@ -1,0 +1,26 @@
+.Tools {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 50px;
+}
+
+.shadow-icon {
+    margin-top: -10px;
+    width: 135px;
+}
+
+.gradient-icon {
+    width: 100px;
+}
+
+.flex-icon {
+    margin-top: 10px;
+    width: 80px;
+}
+
+
+.grid-icon {
+    width: 100px;
+}

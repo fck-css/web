@@ -13,7 +13,7 @@ const Home = () => {
         <section className="container hero">
             <div className="hero-text">
                 <h1>Our amazing tools make your frontend dev life easier</h1>
-                <Link className="btn home-btn" to="/">See Tools</Link>
+                <Link className="btn home-btn" to="/tools">See Tools</Link>
             </div>
             <div className="hero-imgs">
                 <img className="laptop-img" src={laptop} alt="" />
