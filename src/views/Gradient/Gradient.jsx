@@ -86,6 +86,7 @@ const Gradient = () => {
     }
 
     const saveCode = () => {
+        console.log('hola')
         if(user){
             const data = {
                 user: user._id,

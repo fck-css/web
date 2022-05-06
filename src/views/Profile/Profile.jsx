@@ -18,6 +18,10 @@ const Profile = () => {
         getUser();
     }
 
+    useEffect(() => {
+        getUser();
+    }, []);
+
     return(
         <div className="profile-page">
             { user &&
@@ -39,6 +43,7 @@ const Profile = () => {
                 <div className="snippets">
                     { user.snippets && user.snippets.map((snippet, index) => {
                         let boxShadow = null;
+                        console.log(snippet)
 
                         if(snippet.toolType === 'boxShadow') {
                             boxShadow = snippet.code.split(':').pop();
@@ -70,7 +75,8 @@ const Profile = () => {
                                     }
                                 </div>
                                 <div className="snippet-code">
-                                    {snippet.code}
+                                    { (snippet.toolType === 'grid' || snippet.toolType === 'flexbox') && <pre>{snippet.code}</pre>}
+                                    { (snippet.toolType === 'boxShadow' || snippet.toolType === 'gradient') && <p>{snippet.code}</p> }
                                 </div>
                             </div>
                         )
