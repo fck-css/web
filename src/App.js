@@ -31,11 +31,11 @@ function App() {
             <Routes>
 
               <Route element={<UnprotectedRoute />}>
-                <Route path="/" element={<Home />}/>
                 <Route path="/register" element={<Register />}/>
                 <Route path="/login" element={<Login />} />
               </Route>
 
+              <Route path="/" element={<Home />}/>
               <Route path="/box-shadow" element={<BoxShadow />} />
               <Route path="/gradient" element={<Gradient />} />
               <Route path="/box-shadow" element={<BoxShadow />} />

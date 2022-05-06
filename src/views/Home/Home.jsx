@@ -23,10 +23,10 @@ const Home = () => {
             </div>
         </section>
         <section className="tools">
-            <h3>Linear Gradient</h3>
-            <h3>FlexBox Generator</h3>
-            <h3>Box-Shadow</h3>
-            <h3>Button Generator</h3>
+            <h3><Link to='/gradient'>Box Shadow</Link></h3>
+            <h3><Link to='/flexbox'>Flexbox</Link></h3>
+            <h3><Link to='/gradient'>Gradient</Link></h3>
+            <h3><Link to='/grid'>Grid</Link></h3>
         </section>
         <section className="functionalities">
 
