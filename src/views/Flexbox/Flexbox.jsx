@@ -25,29 +25,33 @@ const Flexbox = () => {
 
     const handleChange = (event) => {
         const { name, value } = event.target
+        event.target.defaultChecked = !event.target.defaultChecked;
+
         setOutput({
             ...output,
             [name]: value
         })
     }
 
-    const text = Array.from(document.getElementsByClassName("line-code")).map(p => p.innerHTML).join("\r\n")
-
     const copyText = () => {
+        const text = Array.from(document.getElementsByClassName("line-code")).map(p => p.innerHTML).join("\r\n");
+
         navigator.clipboard.writeText(text)
         createToast("Copied to clipboard", "success")
     }
     
     const saveCode = () => {
+        const text = Array.from(document.getElementsByClassName("line-code")).map(p => p.innerHTML).join("\r\n");
+
         if(user){
             const data = {
                 user: user._id,
                 toolType: typeOfSnippet,
                 code: text
             };
-        
             saveSnippet(data);
             createToast("Snippet successfully saved.", "success");
+        
         } else {
             navigate('/login');
             createToast('You need to be logged in.', 'fail');
@@ -56,12 +60,8 @@ const Flexbox = () => {
 
     return (
         <div className="Flexbox">
-         
-
-
             <div className="parent-output-div">
                 <div className="parent-div" style={output}>
-                    {console.log(output)}
                     {Array.from(Array(childCount).keys()).map(child => <FlexboxChild number={child} />)}
                 </div>
                 <div>
@@ -95,7 +95,7 @@ const Flexbox = () => {
 
                     <div className="flexbox-buttons">
                         <button className='btn btn-dark' onClick={copyText}>Copy Rules</button>
-                        <button className='btn btn-dark' onClick={saveCode}>Save Code</button>
+                        <button className='btn btn-dark' onClick={() => saveCode()}>Save Code</button>
                     </div>
                 </div>
             </div>
@@ -105,7 +105,7 @@ const Flexbox = () => {
                         <h4>flex-direction</h4>
 
                         <div>
-                            <input type="radio" id="" name="flex-direction" value="row" onChange={(event) => handleChange(event)} checked/>
+                            <input type="radio" id="" name="flex-direction" value="row" onChange={(event) => handleChange(event)} defaultChecked/>
                             <label htmlFor="">row (def)</label>
                         </div>
 
@@ -129,7 +129,7 @@ const Flexbox = () => {
                         <h4>flex-wrap</h4>
 
                         <div>
-                            <input type="radio" id="" name="flex-wrap" value="nowrap" onChange={(event) => handleChange(event)}/>
+                            <input type="radio" id="" name="flex-wrap" value="nowrap" onChange={(event) => handleChange(event)} defaultChecked/>
                             <label htmlFor="">nowrap (def)</label>
                         </div>
 
@@ -148,7 +148,7 @@ const Flexbox = () => {
                         <h4>justify-content</h4>
 
                         <div>
-                            <input type="radio" id="" name="justify-content" value="flex-start" onChange={(event) => handleChange(event)} />
+                            <input type="radio" id="" name="justify-content" value="flex-start" onChange={(event) => handleChange(event)} defaultChecked />
                             <label htmlFor="">flex-start (def)</label>
                         </div>
 
@@ -182,7 +182,7 @@ const Flexbox = () => {
                         <h4>align-items</h4>
 
                         <div>
-                            <input type="radio" id="" name="align-items" value="stretch" onChange={(event) => handleChange(event)} />
+                            <input type="radio" id="" name="align-items" value="stretch" onChange={(event) => handleChange(event)} defaultChecked/>
                             <label htmlFor="">stretch (def)</label>
                         </div>
 
@@ -211,7 +211,7 @@ const Flexbox = () => {
                         <h4>align-content</h4>
 
                         <div>
-                            <input type="radio" id="" name="align-content" value="stretch" onChange={(event) => handleChange(event)} />
+                            <input type="radio" id="" name="align-content" value="stretch" onChange={(event) => handleChange(event)} defaultChecked/>
                             <label htmlFor="">stretch (def)</label>
                         </div>
 
