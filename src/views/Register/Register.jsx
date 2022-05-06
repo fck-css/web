@@ -51,7 +51,7 @@ const Register = () => {
 
     return (
         <div className="register-form">
-            <h3 className="mb-3">Sign Up</h3>
+            <h3>Sign Up</h3>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <InputGroup
                     placeholder="Name"
@@ -80,7 +80,7 @@ const Register = () => {
                     register={ register }
                     error={errors.image?.message}
                 />
-                <button className={`mt-3 btn btn-${isSubmiting ? 'secondary' : 'dark'}`}>{isSubmiting ? 'Registering...' : 'Submit'}</button>
+                <button className={`mt-3 btn btn-${isSubmiting ? 'secondary' : 'dark'}`}>{isSubmiting ? 'Registering...' : 'Sign Up'}</button>
             </form>
         </div>
     )

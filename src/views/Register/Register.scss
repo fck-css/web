@@ -5,4 +5,31 @@
     top: 45%;
     left: 50%;
     transform: translate(-50%, -50%);
+    border-radius: 10px
+}
+
+.register-form button {
+    background-color: $mint-green-color;
+    width: 250px;
+    height: 40px;
+    margin-top: 50px;
+    font-size: 18px;
+    font-weight: 600;
+    color: $brown-color;
+    padding: 5px 0;
+    border: none;
+}
+
+.register-form button:hover {
+    background-color: $light-green-color;
+    color: $brown-color;
+}
+
+.register-form input {
+    width: 250px;
+}
+
+.register-form h3 {
+    font-weight: 600;
+    margin-bottom: 30px;
 }
