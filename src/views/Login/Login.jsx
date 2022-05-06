@@ -41,7 +41,7 @@ const Login = () => {
 
     return (
         <div className="login-form">
-            <h3 className="mb-3">Log in</h3>
+            <h3>Log in</h3>
 
             <form onSubmit={handleSubmit(onSubmit)}>
                 <InputGroup
@@ -58,7 +58,7 @@ const Login = () => {
                     error={error}
                     type="password"
                 />
-                <button className={`mt-3 btn btn-${isSubmitting ? 'secondary' : 'dark'}`}>{isSubmitting ? 'Registering...' : 'Submit'}</button>
+                <button className={`mt-3 btn btn-${isSubmitting ? 'secondary' : 'dark'}`}>{isSubmitting ? 'Registering...' : 'Log In'}</button>
             </form>
         </div>
     )

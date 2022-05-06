@@ -6,7 +6,7 @@
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    height: 80vh;
+    height: 70vh;
     margin-top: 20px;
 }
 
@@ -139,7 +139,7 @@
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    height: 80vh;
+    height: 60vh;
     background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(191,255,188,1) 50%, rgba(255,255,255,1) 100%);
     padding: 0 60px;
 }
@@ -150,13 +150,71 @@
     text-decoration: none;
 }
 
+.tool-home-img {
+    width: 50px;
+}
+
+.flexbox-img {
+    width: 40px;
+}
+
+.box-shadow-img {
+    width: 45px;
+}
+
+.tools h5 {
+    color: $brown-color;
+    font-weight: 600;
+}
+
 /* THIRD SECTION */
 
 .home-page .functionalities {
+    width: 80vw;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 80vh;
+    margin: 0 auto;
+    margin-bottom: 70px;
+}
+
+.demo-tool-img {
+    width: 40vw;
+}
+
+.demo-tools-div {
+    width: 80vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.functionalities h1 {
+    font-weight: 600;
+    font-size: 45px;
+    margin-bottom: 80px;
+}
+
+.demo-tools-div ul {
+    width: 40vw;
+    text-align: start;
+    margin-right: 40px;
+    margin-top: 45px;
+    list-style-type: none;
+}
+
+.demo-tools-div ul li {
+    text-align: start;
+    font-size: 20px;
+    margin-bottom: 30px;
+}
+
+.functionalities span {
+    font-weight: 600;
+    text-decoration: underline 5px $light-green-color;
 }
 
 
