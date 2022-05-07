@@ -3,6 +3,10 @@ import { useAuthContext } from "../../contexts/AuthContext/AuthContext";
 import { logout as doLogout } from "../../store/accessTokenStore";
 import { deleteSnippet, editProfile } from "../../services/UserService";
 import gridExample from '../../images/grid-example.png'
+import empty from '../../images/empty.svg'
+import tumbleweed from '../../images/tumbleweed.png'
+import tumbleweed1 from '../../images/tumbleweed1.png'
+import tumbleweed2 from '../../images/tumbleweed2.png'
 import './Profile.scss';
 
 const Profile = () => {
@@ -73,73 +77,82 @@ const Profile = () => {
                             </div>
                         </div>
                 </div>
-                <div className="snippets">
-                    { user.snippets && user.snippets.map((snippet, index) => {
-                        let boxShadow = null;
+                    {   
+                       user.snippets.length < 1 ?
+                        <div className="empty-div">
+                            <h4>You haven't saved any snippets yet!</h4>
+                            <img src={tumbleweed1} />
+                        </div>
+                        :
+                        <div className="snippets">
+                        {user.snippets.map((snippet, index) => {
+                            let boxShadow = null;
 
-                        const styles = getObject(snippet)
+                            const styles = getObject(snippet)
 
 
-                        if(snippet.toolType === 'boxShadow') {
-                            boxShadow = snippet.code.split(':').pop();
-                        }
+                            if(snippet.toolType === 'boxShadow') {
+                                boxShadow = snippet.code.split(':').pop();
+                            }
 
-                        return (
-                            <div className="snippet-div" key={index}>
-                                <button className="delete-snippet-btn" onClick={() => removeSnippet(snippet._id)}><i className="fa-solid fa-circle-xmark"></i></button>
-                                <div className="snippet-result">
-                                    { 
-                                        snippet.toolType === 'boxShadow' && 
-                                        <div 
-                                            className='box-shadow-profile'
-                                            style={{ 
-                                                boxShadow: boxShadow
-                                            }}
-                                        >
-                                        </div>
-                                    }
-                                    { 
-                                        snippet.toolType === 'gradient' && 
-                                        <div 
-                                            className='gradient-profile'
-                                            style={{ 
-                                                background: snippet.code
-                                            }}
-                                        >
-                                        </div>
-                                    }
-                                    {
-                                        snippet.toolType === 'flexbox' &&
-                                        <div
-                                            className='flexbox-profile'
-                                        >
-                                            <div className="flex-parent-div" style={styles}>
-                                                <div className="flex-child-div"></div>
-                                                <div className="flex-child-div"></div>
-                                                <div className="flex-child-div"></div>
-                                                <div className="flex-child-div"></div>
+                            return (
+                                <div className="snippet-div" key={index}>
+                                    <button className="delete-snippet-btn" onClick={() => removeSnippet(snippet._id)}><i className="fa-solid fa-circle-xmark"></i></button>
+                                    <div className="snippet-result">
+                                        { 
+                                            snippet.toolType === 'boxShadow' && 
+                                            <div 
+                                                className='box-shadow-profile'
+                                                style={{ 
+                                                    boxShadow: boxShadow
+                                                }}
+                                            >
                                             </div>
-                                        </div>
-                                    }
-                                    {
-                                        snippet.toolType === 'grid' &&
-                                        <div
-                                            className='grid-profile'
-                                        >
-                                            <div>
-                                               <img src={gridExample} alt="" className="grid-example"/>
+                                        }
+                                        { 
+                                            snippet.toolType === 'gradient' && 
+                                            <div 
+                                                className='gradient-profile'
+                                                style={{ 
+                                                    background: snippet.code
+                                                }}
+                                            >
                                             </div>
-                                        </div>
-                                    }
-                                </div>
-                                <div className="snippet-code">
-                                    { (snippet.toolType === 'grid' || snippet.toolType === 'flexbox') && <pre>{snippet.code}</pre>}
-                                    { (snippet.toolType === 'boxShadow' || snippet.toolType === 'gradient') && <p>{snippet.code}</p> }
-                                </div>
-                            </div>
-                        )
-                    }) }
-                </div>
+                                        }
+                                        {
+                                            snippet.toolType === 'flexbox' &&
+                                            <div
+                                                className='flexbox-profile'
+                                            >
+                                                <div className="flex-parent-div" style={styles}>
+                                                    <div className="flex-child-div"></div>
+                                                    <div className="flex-child-div"></div>
+                                                    <div className="flex-child-div"></div>
+                                                    <div className="flex-child-div"></div>
+                                                </div>
+                                            </div>
+                                        }
+                                        {
+                                            snippet.toolType === 'grid' &&
+                                            <div
+                                                className='grid-profile'
+                                            >
+                                                <div>
+                                                <img src={gridExample} alt="" className="grid-example"/>
+                                                </div>
+                                            </div>
+                                        }
+                                    </div>
+                                    <div className="snippet-code">
+                                        { (snippet.toolType === 'grid' || snippet.toolType === 'flexbox') && <pre>{snippet.code}</pre>}
+                                        { (snippet.toolType === 'boxShadow' || snippet.toolType === 'gradient') && <p>{snippet.code}</p> }
+                                    </div>
+                                    </div>
+                            )
+                        }) 
+                    }
+                    </div>
+                    }
             </>
             }
         </div>

@@ -166,3 +166,29 @@ pre {
 .fa-solid:hover {
     cursor: pointer;
 }
+
+.empty-div {
+    margin-top: 30px;
+}
+
+.empty-div > h4 {
+    color: $red;
+}
+
+.empty-div > img {
+    margin-top: 100px;
+    width: 100px;
+    position: absolute;
+    left: -10vw;
+    animation: tumbleweed 10s linear infinite, spin 6s linear infinite;
+}
+
+@keyframes tumbleweed {
+    0% {left: -10vw}
+    100% {left: 100vw;}    
+}
+
+@keyframes spin {
+    from {transform:rotate(0deg);}
+    to {transform:rotate(360deg);} 
+}
