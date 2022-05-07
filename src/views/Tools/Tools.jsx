@@ -14,7 +14,7 @@ const Tools = () => {
         <div className="Tools">
 
             <Tool type="boxshadow" src={shadowIcon}>
-                <h3 className="shadow-a"><Link to='/gradient'>Box Shadow</Link></h3>
+                <h3 className="shadow-a"><Link to='/box-shadow'>Box Shadow</Link></h3>
                 <p>The box-shadow CSS property adds shadow effects around an element's frame. You can set multiple effects separated by commas. A box shadow is described by X and Y offsets relative to the element, blur and spread radius, and color.</p>
             </ Tool>
             <Tool type="flex" src={flexIcon}>

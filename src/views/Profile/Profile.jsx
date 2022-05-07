@@ -1,10 +1,12 @@
 import react, { useState, useEffect } from "react";
 import { useAuthContext } from "../../contexts/AuthContext/AuthContext";
 import { logout as doLogout } from "../../store/accessTokenStore";
-import { deleteSnippet, getCurrentUser } from "../../services/UserService";
+import { deleteSnippet } from "../../services/UserService";
+import gridExample from '../../images/grid-example.png'
 import './Profile.scss';
 
 import buttonSample from '../../assets/button-sample.png';
+import { array } from "yup";
 
 const Profile = () => {
     const { user, getUser } = useAuthContext();
@@ -21,6 +23,15 @@ const Profile = () => {
     useEffect(() => {
         getUser();
     }, []);
+
+    const getObject = (snippet) => {
+        const result = {}
+        const clearedArray = snippet.code.split(';\r\n').join(', ').split(': ').join(', ').split(', ')
+        for (let i = 0; i < clearedArray.length; i++) {
+            result[clearedArray[i]] = clearedArray[i+1]
+        }
+        return result;
+    }
 
     return(
         <div className="profile-page">
@@ -43,7 +54,9 @@ const Profile = () => {
                 <div className="snippets">
                     { user.snippets && user.snippets.map((snippet, index) => {
                         let boxShadow = null;
-                        console.log(snippet)
+
+                        const styles = getObject(snippet)
+
 
                         if(snippet.toolType === 'boxShadow') {
                             boxShadow = snippet.code.split(':').pop();
@@ -71,6 +84,29 @@ const Profile = () => {
                                                 background: snippet.code
                                             }}
                                         >
+                                        </div>
+                                    }
+                                    {
+                                        snippet.toolType === 'flexbox' &&
+                                        <div
+                                            className='flexbox-profile'
+                                        >
+                                            <div className="flex-parent-div" style={styles}>
+                                                <div className="flex-child-div"></div>
+                                                <div className="flex-child-div"></div>
+                                                <div className="flex-child-div"></div>
+                                                <div className="flex-child-div"></div>
+                                            </div>
+                                        </div>
+                                    }
+                                    {
+                                        snippet.toolType === 'grid' &&
+                                        <div
+                                            className='grid-profile'
+                                        >
+                                            <div>
+                                               <img src={gridExample} alt="" className="grid-example"/>
+                                            </div>
                                         </div>
                                     }
                                 </div>
