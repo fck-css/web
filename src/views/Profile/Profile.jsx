@@ -140,7 +140,6 @@ const Profile = () => {
                         )
                     }) }
                 </div>
-                <hr />
             </>
             }
         </div>
