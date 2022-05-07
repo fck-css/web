@@ -22,12 +22,12 @@ const Profile = () => {
             })
     }
 
-    const editUserInfo = (id) => {
+    const editUserInfo = (id, e) => {
+        e.preventDefault()
         editProfile(id, { name })
             .then(() => {
-                setName(user.name)
-                getUser();
-            })
+                getUser(setIsEditing(false));
+            }).catch(e => console.error(e))
     }
     
     const handleChange = (event) => {
@@ -58,9 +58,9 @@ const Profile = () => {
                             <div>
                                 {
                                     isEditing ? 
-                                    <form action="">
+                                    <form onSubmit={(e) => editUserInfo(user._id, e)}>
                                         <input type="text" onChange={handleChange} value={name}/>
-                                        <button className="submit-edit-btn btn btn-dark" onClick={() => editUserInfo(user._id)}><i className="fa-solid fa-circle-check"></i></button>
+                                        <button className="submit-edit-btn btn btn-dark"><i className="fa-solid fa-circle-check"></i></button>
                                     </form>
                                     : 
                                     <p className="username">{user.name}</p>
