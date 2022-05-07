@@ -19,13 +19,17 @@ const Profile = () => {
     }
 
     const removeSnippet = (id) => {
-        deleteSnippet(id);
-        getUser();
+        deleteSnippet(id)
+            .then(() => {
+                getUser();
+            })
     }
 
     const editUserInfo = (id) => {
-        editProfile(id, { name });
-        getUser();
+        editProfile(id, { name })
+            .then(() => {
+                getUser();
+            })
     }
     
     const handleChange = (event) => {
