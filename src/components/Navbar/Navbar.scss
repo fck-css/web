@@ -9,10 +9,20 @@
     margin-bottom: 3%;
 }
 
+
 .navbar a {
     color: $brown-color;
     font-size: 1.25rem;
     text-decoration: none;
+}
+
+.navbar a:hover {
+    color: $purple-color;
+}
+
+.brand {
+    text-decoration: underline wavy $red !important;
+    text-underline-position: under;
 }
 
 #navbarSupportedContent {
