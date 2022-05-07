@@ -23,11 +23,21 @@
     margin-right: 20px;
 }
 
+.user-info-div {
+    display: flex;
+    background-color: #F3F4F3;
+    padding: 30px 40px 30px 20px;
+    width: 40%;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    border-radius: 10px;
+}
+
 .header {
     width: 100%;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
 }
 
 .username {
@@ -40,6 +50,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    margin-left: 30px;
 }
 
 .sample-img {
@@ -101,8 +112,8 @@
 }
 
 .box-shadow-profile {
-    width: 120px;
-    height: 120px;
+    width: 80px;
+    height: 80px;
     background-color: $light-green-color;
     margin-right: 30px;
     display: flex;
@@ -135,4 +146,15 @@ pre {
     font-weight: 400;
     color: #423E37;
     font-size: 16px;
+}
+
+.fa-circle-check {
+    color: white;
+}
+
+.submit-edit-btn {
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    margin-bottom: 4.25px;
 }
