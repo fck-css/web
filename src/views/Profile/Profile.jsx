@@ -84,7 +84,7 @@ const Profile = () => {
 
                         return (
                             <div className="snippet-div" key={index}>
-                                <button className="delete-snippet-btn" onClick={() => removeSnippet(user)}><i className="fa-solid fa-circle-xmark"></i></button>
+                                <button className="delete-snippet-btn" onClick={() => removeSnippet(snippet._id)}><i className="fa-solid fa-circle-xmark"></i></button>
                                 <div className="snippet-result">
                                     { 
                                         snippet.toolType === 'boxShadow' && 
