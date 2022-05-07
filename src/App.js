@@ -16,6 +16,7 @@ import Grid from './views/Grid/Grid';
 import Gradient from './views/Gradient/Gradient';
 import NotFound from './components/NotFound/NotFound';
 import Tools from './views/Tools/Tools';
+import Spinner from './components/Spinner/Spinner';
 
 function App() {
   const { isAuthenticationFetched, toast } = useAuthContext()
@@ -27,7 +28,7 @@ function App() {
 
           <div id="content-wrap">
             {!isAuthenticationFetched ? 
-            <p>Loading...</p>
+            <Spinner />
             :
             <Routes>
 
