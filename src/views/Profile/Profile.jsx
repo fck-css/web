@@ -5,9 +5,6 @@ import { deleteSnippet, editProfile } from "../../services/UserService";
 import gridExample from '../../images/grid-example.png'
 import './Profile.scss';
 
-import buttonSample from '../../assets/button-sample.png';
-import { array } from "yup";
-
 const Profile = () => {
     const { user, getUser } = useAuthContext();
 
@@ -28,6 +25,7 @@ const Profile = () => {
     const editUserInfo = (id) => {
         editProfile(id, { name })
             .then(() => {
+                setName(user.name)
                 getUser();
             })
     }

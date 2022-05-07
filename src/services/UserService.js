@@ -5,4 +5,4 @@ const http = createHttp({ useAccessToken: true })
 export const getCurrentUser = () => http.get('/users/me')
 export const saveSnippet = (data) => http.post('/users/snippet', data);
 export const deleteSnippet = (id) => http.delete(`/users/snippet/${id}`);
-export const editProfile = (id, data) => http.patch(`/users/${id}`, data);
+export const editProfile = (id, data) => http.put(`/users/${id}`, data);
