@@ -1,26 +1,31 @@
+@import '../../variables.scss';
+
 .Tools {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr;
-    grid-column-gap: 0px;
-    grid-row-gap: 50px;
+    grid-column-gap: 70px;
+    grid-row-gap: 70px;
+    padding: 0 10vw;
 }
 
-.shadow-icon {
-    margin-top: -10px;
-    width: 135px;
+.shadow-a:hover {
+    text-shadow: 2px 2px $brown-color;  
 }
 
-.gradient-icon {
-    width: 100px;
+.gradient-a:hover {
+    background: linear-gradient(134deg, rgba(101, 108, 125, 0.7) 0%, rgba(191,255,188, 1) 30%);
+    background-clip: text;
+	-webkit-text-fill-color: transparent;
 }
 
-.flex-icon {
-    margin-top: 10px;
-    width: 80px;
+.flex-a:hover {
+    width: 200px;
+    letter-spacing: 7px;
 }
 
-
-.grid-icon {
-    width: 100px;
+.grid-a:hover {
+    margin-top: -35px;
+    width: 30px;
+    word-break: break-all;
 }
