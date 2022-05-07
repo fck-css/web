@@ -10,6 +10,7 @@ import boxShadowImg from '../../images/box-shadow.png';
 import gridImg from '../../images/view-grid.png';
 import gradientImg from '../../images/gradient-icon.webp';
 import demoToolImg from '../../images/demo-tool.png';
+import demo from '../../images/demo.gif'
 import { Link } from "react-router-dom";
 
 const Home = () => {
@@ -61,7 +62,7 @@ const Home = () => {
                     <li>Our <span>clean and minimalist interface</span> lets you focus<br></br> on what really matters.</li>
                     <li><span>We aggregate the most important tools</span> you need as frontend dev in the same page.</li>
                 </ul>
-                <img className="demo-tool-img" src={demoToolImg} alt="" />
+                <img className="demo-tool-img" src={demo} alt="" />
             </div>
         </section>
         </div>
