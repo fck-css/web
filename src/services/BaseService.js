@@ -3,7 +3,7 @@ import { getAccessToken } from '../store/accessTokenStore';
 
 const create = ({ useAccessToken } = { useAccessToken: true }) => {
     const http = axios.create({
-        baseURL: 'http://localhost:3001/api',
+        baseURL: 'https://fck-css.onrender.com/api',
         withCredentials: false
     })
     
