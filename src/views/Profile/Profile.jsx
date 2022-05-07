@@ -1,7 +1,7 @@
 import react, { useState, useEffect } from "react";
 import { useAuthContext } from "../../contexts/AuthContext/AuthContext";
 import { logout as doLogout } from "../../store/accessTokenStore";
-import { deleteSnippet, getCurrentUser } from "../../services/UserService";
+import { deleteSnippet, editProfile } from "../../services/UserService";
 import './Profile.scss';
 
 import buttonSample from '../../assets/button-sample.png';
@@ -9,6 +9,9 @@ import buttonSample from '../../assets/button-sample.png';
 const Profile = () => {
     const { user, getUser } = useAuthContext();
 
+    const [isEditing, setIsEditing] = useState(false);
+    const [name, setName] = useState(user.name);
+    
     const logout = () => {
         doLogout();
     }
@@ -17,6 +20,15 @@ const Profile = () => {
         deleteSnippet(id);
         getUser();
     }
+
+    const editUserInfo = (id) => {
+        editProfile(id, { name });
+        getUser();
+    }
+    
+    const handleChange = (event) => {
+        setName(event.target.value)
+    };
 
     useEffect(() => {
         getUser();
@@ -27,15 +39,23 @@ const Profile = () => {
             { user &&
             <>
                 <div className="user-info-div">
-                        <img src={user.image} alt="your profile picture" />
 
                         <div className="header">
+                            <img src={user.image} alt="your profile picture" />
                             <div>
-                                <p className="username">{user.name}</p>
+                                {
+                                    isEditing ? 
+                                    <form action="">
+                                        <input type="text" onChange={handleChange} value={name}/>
+                                        <button className="submit-edit-btn btn btn-dark" onClick={() => editUserInfo(user._id)}><i className="fa-solid fa-circle-check"></i></button>
+                                    </form>
+                                    : 
+                                    <p className="username">{user.name}</p>
+                                }
                                 <p>{user.email}</p>
                             </div>
                             <div className="profile-buttons">
-                                <i className="fa-solid fa-gear settings-icon"></i>
+                                <i className="fa-solid fa-gear settings-icon" onClick={() => setIsEditing(!isEditing)}></i>
                                 <i onClick={logout} className="fa-solid fa-arrow-right-from-bracket"></i>
                             </div>
                         </div>
@@ -43,7 +63,6 @@ const Profile = () => {
                 <div className="snippets">
                     { user.snippets && user.snippets.map((snippet, index) => {
                         let boxShadow = null;
-                        console.log(snippet)
 
                         if(snippet.toolType === 'boxShadow') {
                             boxShadow = snippet.code.split(':').pop();
@@ -51,7 +70,7 @@ const Profile = () => {
 
                         return (
                             <div className="snippet-div" key={index}>
-                                <button className="delete-snippet-btn" onClick={() => removeSnippet(snippet._id)}><i className="fa-solid fa-circle-xmark"></i></button>
+                                <button className="delete-snippet-btn" onClick={() => removeSnippet(user)}><i className="fa-solid fa-circle-xmark"></i></button>
                                 <div className="snippet-result">
                                     { 
                                         snippet.toolType === 'boxShadow' && 
