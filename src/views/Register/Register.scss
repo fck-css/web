@@ -2,10 +2,13 @@
 
 .register-form {
     position: absolute;
-    top: 45%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    border-radius: 10px
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0px -1px 43px 0px rgba(207,205,233,1);
+    padding: 30px 20px;
 }
 
 .register-form button {
@@ -13,6 +16,7 @@
     width: 250px;
     height: 40px;
     margin-top: 50px;
+    margin-bottom: 10px;
     font-size: 18px;
     font-weight: 600;
     color: $brown-color;
@@ -20,7 +24,7 @@
     border: none;
 }
 
-.register-form button:hover {
+.register-form button:hover, .register-form button:focus {
     background-color: $light-green-color;
     color: $brown-color;
 }
@@ -32,4 +36,13 @@
 .register-form h3 {
     font-weight: 600;
     margin-bottom: 30px;
+    background: linear-gradient(134deg, rgba(101, 108, 125, 0.7) 0%, rgba(191,255,188, 1) 80%);
+    background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+.fa-user-plus {
+    color: $brown-color !important;
+    width: 20px;
+    height: 20px;
 }

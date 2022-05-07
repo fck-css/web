@@ -6,6 +6,7 @@
     flex-direction: column;
     justify-content: center;
     align-content: center;
+    margin-bottom: 100px;
 }
 
 .user-info-div {
@@ -25,7 +26,8 @@
 
 .user-info-div {
     display: flex;
-    background-color: #F3F4F3;
+    background-color: #fff;
+    box-shadow: 0px -1px 43px 0px rgba(207,205,233,1);
     padding: 30px 40px 30px 20px;
     width: 40%;
     margin: 0 auto;
@@ -76,7 +78,8 @@
     justify-content: center;
     align-items: center;
     margin-top: 20px;
-    background-color: #F3F4F3;
+    background-color: #fff;
+    box-shadow: 0px -1px 43px 0px rgba(207,205,233,1);
     border-radius: 10px;
     padding: 20px;
 }
@@ -107,6 +110,7 @@
     padding: 20px;
     width: 22vw;
     background-color: #E3E7FB;
+    box-shadow: 0px -1px 43px 0px rgba(255,255,255,1) inset;
     text-align: start;
     border-radius: 10px;
 }

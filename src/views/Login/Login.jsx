@@ -7,6 +7,7 @@ import { login as loginRequest }  from "../../services/AuthService";
 import InputGroup from "../../components/InputGroup/InputGroup";
 import './Login.scss';
 import { useAuthContext } from "../../contexts/AuthContext/AuthContext";
+import Spinner from "../../components/Spinner/Spinner";
 
 const schema = yup.object({
     email: yup.string().email().required(),
@@ -41,7 +42,7 @@ const Login = () => {
 
     return (
         <div className="login-form">
-            <h3>Log in</h3>
+            <h3>Log In</h3>
 
             <form onSubmit={handleSubmit(onSubmit)}>
                 <InputGroup
@@ -58,7 +59,16 @@ const Login = () => {
                     error={error}
                     type="password"
                 />
-                <button className={`mt-3 btn btn-${isSubmitting ? 'secondary' : 'dark'}`}>{isSubmitting ? 'Registering...' : 'Log In'}</button>
+                <button className={`mt-3 btn btn-${isSubmitting ? 'secondary' : 'dark'}`}>
+                {
+                    isSubmitting ? 
+                    <div class="spinner-border" role="status">
+                      <span class="sr-only">Loading...</span>
+                    </div>
+                    :
+                    <i className="fa-solid fa-arrow-right-to-bracket"></i>
+                }
+                </button>
             </form>
         </div>
     )

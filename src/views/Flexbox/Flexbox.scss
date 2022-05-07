@@ -7,11 +7,18 @@
     flex-direction: column;
     padding: 0 10%;
     margin-top: -40px;
+    margin-bottom: 100px;
 }
 
 .child-count-div {
     display: flex;
     align-items: center;
+}
+
+.child-count-div > input{
+    display: flex;
+    align-items: center;
+    margin-top: 0;
 }
 
 .child-count-title {
