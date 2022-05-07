@@ -2,7 +2,6 @@ import react, { useState, useEffect } from "react";
 import { useAuthContext } from "../../contexts/AuthContext/AuthContext";
 import { logout as doLogout } from "../../store/accessTokenStore";
 import { deleteSnippet, editProfile } from "../../services/UserService";
-import { deleteSnippet } from "../../services/UserService";
 import gridExample from '../../images/grid-example.png'
 import './Profile.scss';
 
