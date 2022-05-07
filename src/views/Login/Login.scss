@@ -5,6 +5,10 @@
     top: 45%;
     left: 50%;
     transform: translate(-50%, -50%);
+    background-color: #fff;
+    box-shadow: 0px -1px 43px 0px rgba(207,205,233,1);
+    padding: 30px 20px;
+    border-radius: 10px;
 }
 
 .login-form button {
@@ -17,9 +21,10 @@
     color: $brown-color;
     padding: 5px 0;
     border: none;
+    position: relative;
 }
 
-.login-form button:hover {
+.login-form button:hover, .login-form button:focus {
     background-color: $light-green-color;
     color: $brown-color;
 }
@@ -31,4 +36,18 @@
 .login-form h3 {
     font-weight: 600;
     margin-bottom: 30px;
+    background: linear-gradient(134deg, rgba(101, 108, 125, 0.7) 0%, rgba(191,255,188, 1) 80%);
+    background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+.fa-arrow-right-to-bracket {
+    color: $brown-color !important;
+    width: 20px;
+    height: 20px;
+}
+
+.spinner-border {
+    width: 20px;
+    height: 20px;
 }

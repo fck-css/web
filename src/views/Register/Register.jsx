@@ -80,7 +80,16 @@ const Register = () => {
                     register={ register }
                     error={errors.image?.message}
                 />
-                <button className={`mt-3 btn btn-${isSubmiting ? 'secondary' : 'dark'}`}>{isSubmiting ? 'Registering...' : 'Sign Up'}</button>
+                <button className={`mt-3 btn btn-${isSubmiting ? 'secondary' : 'dark'}`}>
+                {
+                    isSubmiting ? 
+                    <div class="spinner-border" role="status">
+                      <span class="sr-only">Loading...</span>
+                    </div>
+                    :
+                    <i class="fa-solid fa-user-plus"></i>
+                }
+                </button>
             </form>
         </div>
     )

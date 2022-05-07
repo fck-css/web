@@ -7,7 +7,7 @@ const Footer = () => {
           <p className="col-md-4 mb-0 text-muted">© 2022 F*ck CSS, Inc.</p>
           <ul className="nav col-md-4">
             <li className="nav-item first-footer-item">
-                <a href="/" className="nav-link px-2 text-muted">Tools</a>
+                <a href="/tools" className="nav-link px-2 text-muted">Tools</a>
             </li>
             <li className="nav-item">
                 <a href="/" className="nav-link px-2 text-muted">About</a>
